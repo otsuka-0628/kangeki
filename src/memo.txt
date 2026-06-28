@@ -1,0 +1,48 @@
+docker exec -it kangeki_app bash
+コンテナに入るためのコマンド
+
+curl -sS https://getcomposer.org/installer | php
+
+composer create-project laravel/laravel 
+ララベルインストールコマンド
+
+php composer.phar create-project laravel/laravel .
+
+php composer.phar create-project laravel/laravel src
+
+①
+apt update && apt install -y unzip zip
+②
+apt install -y libzip-dev
+docker-php-ext-install zip
+10:40
+③php -m | grep zip
+
+①cd /var/www/html/src
+②chmod -R 777 storage bootstrap/cache
+③php artisan optimize:clear
+最後
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+
+composer require laravel/breeze --dev
+
+② Breezeセットアップ
+php artisan breeze:install
+③ フロント依存
+npm install
+④ ビルド
+npm run build
+⑤
+php artisan migrate
+
+ドッカーを起動
+docker compose up
+
+Vite（npm run dev）を起動＊別のターミナルを開く
+docker compose exec app bash -c "cd src && npm run dev"
+停止するときはctrl + c
+
+php artisan route:list
+ルートリスト一覧

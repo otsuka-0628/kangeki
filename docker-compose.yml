@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: kangeki_app
+    ports:
+      - "8000:80"
+      - "5173:5173"
+    volumes:
+      - ./:/var/www/html
+
+  db:
+    image: mysql:8.0
+    container_name: kangeki_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kangeki_app
+      MYSQL_USER: kangeki
+      MYSQL_PASSWORD: kangeki
+    ports:
+      - "3307:3306"
