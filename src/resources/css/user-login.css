@@ -23,7 +23,35 @@ body {
     border-radius: 20px;
     margin-right: auto;
     margin-left: auto;
-    text-align: center;
+}
+
+.tp-group {
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.form-root form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.password-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 300px;
+    padding-bottom: 20px;
+}
+
+.password-group a {
+    color: #91522e9b;
 }
 
 .login-logo {
@@ -37,20 +65,22 @@ body {
 input[type="text"],
 input[type="password"] {
     border: 1px solid #000000;
-    padding: 5px 12%;
+    padding: 4px;
+    width: 300px;
     background-color: #fff;
     color: #91522e9b;
+    box-sizing: border-box;
 }
 
 input[type="password"] {
-    margin-top: 5%;
+    width: 100%;
 }
 
 input[type="submit"] {
-    border: 1px solid #000;
+    border: 1px solid #ffffff;
     background-color: #000;
     color: #fff;
     padding: 5px 10%;
-    margin-top: 15%;
+    /* margin-top: 10%; */
     border-radius: 5px;
 }

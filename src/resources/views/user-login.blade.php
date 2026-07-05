@@ -16,8 +16,13 @@
             <div class="form-root">
                 <img class="login-logo" src="images/logo2.png">
                 <form action="login-outpot.php" method="post">
-                    <input type="text" name="userID" placeholder="ユーザーID（メールアドレス）"><br>
-                    <input type="password" name="password" placeholder="パスワード"><br>
+                    <input type="text" name="userID" placeholder="ユーザーID（メールアドレス）">
+
+                    <div class="password-group">
+                        <input type="password" name="password" placeholder="パスワード">
+                        <a href="{{ route('forgot-password') }}" class="forgot-link">パスワードを忘れた</a>
+                    </div>
+
                     <input type="submit" value="ログイン">
                 </form>
             </div>

@@ -7,7 +7,6 @@
     <title>KANGEKI</title>
     @vite([
         'resources/css/app.css',
-        'resources/css/register-top.css'
     ])
 </head>
 
