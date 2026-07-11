@@ -46,3 +46,11 @@ docker compose exec app bash -c "cd src && npm run dev"
 
 php artisan route:list
 ルートリスト一覧
+
+ターミナルのメニュー　Git bash
+$ git checkout -b fix/home-loginpage
+checkout 移動する　-b 新しく作る　fix　修理する　/ブランチ名（自分で決める）
+
+git branch
+
+git status

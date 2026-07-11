@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン</title>
+    <title>新規登録</title>
     @vite([
         'resources/css/app.css',
     ])
@@ -15,15 +15,17 @@
         <section class=login-form>
             <div class="form-root">
                 <img class="login-logo" src="images/logo2.png">
-                <form action="login-outpot.php" method="post">
+                <form action="/user-register" method="post">
+                    @csrf
                     <input type="text" name="userID" placeholder="ユーザーID（メールアドレス）">
-
                     <div class="password-group">
                         <input type="password" name="password" placeholder="パスワード">
-                        <a href="{{ route('forgot-password') }}" class="forgot-link">パスワードを忘れた</a>
                     </div>
-
-                    <input type="submit" value="ログイン">
+                    <div class="tp-group">
+                        <a href="{{ route('terms') }}">利用規約</a>
+                        <a href="{{ route('privacy') }}">プライバシーポリシー</a>
+                    </div>
+                    <input type="submit" value="新規登録">
                 </form>
             </div>
         </section>
