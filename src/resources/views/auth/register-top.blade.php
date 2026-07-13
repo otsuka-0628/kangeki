@@ -15,7 +15,7 @@
 
         <img class="top-logo" src="images/logo.png">
 
-        <a href="{{ route('user-login') }}" class="btn btn-login">
+        <a href="{{ route('login') }}" class="btn btn-login">
             ログイン
         </a>
 
