@@ -13,7 +13,7 @@
 <body>
     <div class="rt-bg" style="background-image: url('{{ asset('images/rt-background.jpg') }}')">
 
-        <img class="top-logo" src="images/logo.png">
+        <img class="top-logo" src="images/logo-white.png">
 
         <a href="{{ route('login') }}" class="btn btn-login">
             ログイン

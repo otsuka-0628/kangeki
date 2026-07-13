@@ -14,7 +14,7 @@
     <div class="lr-bg" style="background-image: url('{{ asset('images/lr-background.jpg') }}')">
         <section class=login-form>
             <div class="form-root">
-                <img class="login-logo" src="images/logo2.png">
+                <img class="login-logo" src="images/logo-black.png">
                 <form action="/user-login" method="post">
                     @csrf
                     <input type="text" name="userID" placeholder="ユーザーID（メールアドレス）">
