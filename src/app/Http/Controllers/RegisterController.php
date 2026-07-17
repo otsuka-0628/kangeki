@@ -19,12 +19,21 @@ class RegisterController extends Controller
     {
         // 1. 入力チェック（バリデーション）
         // 画面の「name="userID"」と「name="password"」をチェックする
-        $request->validate([
+        $rules = [
             // 必須、メアド形式、usersテーブルのemailカラムと重複不可
             'userID' => 'required|email|max:255|unique:users,email',
             // 必須、最低8文字以上
             'password' => 'required|string|min:8',
-        ]);
+        ];
+        $messages = [
+            'userID.required' => 'メールアドレスを入力してください。',
+            'userID.email' => 'メールアドレスの形式で入力してください。',
+            'userID.unique' => 'すでに登録されているメールアドレスです。',
+            'password.required' => 'パスワード入力されていません。',
+            'password.min' => 'パスワードは８文字以上で入力して下さい。',
+        ];
+
+        $request->validate($rules, $messages);
 
         // 2. データベースに保存する
         // 設計した users テーブルのカラム名に合わせてデータを入れる

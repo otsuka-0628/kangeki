@@ -17,9 +17,19 @@
                 <img class="login-logo" src="images/logo-black.png">
                 <form action="/user-register" method="post">
                     @csrf
-                    <input type="text" name="userID" placeholder="ユーザーID（メールアドレス）">
+                    <div class="error-container">
+                        @error('userID')
+                            <div class="error-text">{{ $message }}</div>
+                        @enderror
+
+                        @error('password')
+                            <div class="error-text">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <input type="text" name="userID" value="{{ old('userID') }}" placeholder="ユーザーID（メールアドレス）">
                     <div class="password-group">
                         <input type="password" name="password" placeholder="パスワード">
+
                     </div>
                     <div class="tp-group">
                         <a href="{{ route('terms') }}">利用規約</a>
