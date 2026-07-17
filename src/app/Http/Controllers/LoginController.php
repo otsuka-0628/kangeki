@@ -13,6 +13,10 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'userID' => 'required|email',
             'password' => 'required|string',
+        ], [
+            'userID.required' => 'メールアドレスを入力してください。',
+            'userID.email' => 'メールアドレスの形式で入力してください。',
+            'password.required' => 'パスワードを入力してください。',
         ]);
 
         $loginDate = [

@@ -17,6 +17,17 @@
                 <img class="login-logo" src="images/logo-black.png">
                 <form action="/user-login" method="post">
                     @csrf
+                    <div class="error-container">
+                        @error('userID')
+                            <div class="error-text">{{ $message }}</div>
+                        @enderror
+                        @error('password')
+                            <div class="error-text">{{ $message }}</div>
+                        @enderror
+                        @error('login_error')
+                            <div class="error-text">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <input type="text" name="userID" placeholder="ユーザーID（メールアドレス）">
 
                     <div class="password-group">
