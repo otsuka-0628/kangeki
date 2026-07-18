@@ -16,10 +16,24 @@
             <div class="form-root">
                 <img class="login-logo" src="{{ asset('images/logo-black.png') }}">
                 <form action="/forgot-password" method="post">
+                    @csrf
                     <div class="forgot-error-container">
-                        <div class="error-text">ご登録いただいているメールアドレスにパスワード再設定リンクを送信します。</div>
+                        @if (session('status'))
+                            <div class="error-text">
+                                {{ session('status') }}
+                            </div>
+                        @elseif($errors->has('email'))
+                            <div class="error-text">
+                                {{ $errors->first('email') }}
+                            </div>
+                        @else
+                            <div class="error-text">
+                                ご登録いただいているメールアドレスにパスワード再設定リンクを送信します。
+                            </div>
+                        @endif
+
                     </div>
-                    <input type="text" name="userID" placeholder="ユーザーID（メールアドレス）">
+                    <input type="text" name="email" value="{{ old('email') }}" placeholder=" ユーザーID（メールアドレス）">
                     <input type="submit" value="送信">
                 </form>
             </div>
