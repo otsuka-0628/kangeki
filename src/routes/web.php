@@ -4,6 +4,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ResetPasswordController;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -28,6 +29,8 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->name('password.reset');
+
+Route::post('/password/update', [ResetPasswordController::class, 'update'])->name('password.update');
 
 Route::get('/user-register', [RegisterController::class, 'showRegisterForm'])->name('user-register');
 
