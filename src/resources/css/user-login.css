@@ -54,6 +54,14 @@ body {
     color: #91522e9b;
 }
 
+.reset-password-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
 .login-logo {
     display: block;
     margin-right: auto;
