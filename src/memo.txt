@@ -54,3 +54,5 @@ checkout 移動する　-b 新しく作る　fix　修理する　/ブランチ�
 git branch
 
 git status
+
+php artisan make:controller ForgotPasswordController

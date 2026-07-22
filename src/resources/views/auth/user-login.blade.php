@@ -18,6 +18,10 @@
                 <form action="/user-login" method="post">
                     @csrf
                     <div class="error-container">
+                        @if (session('status'))
+                            <div class="error-text">{{ session('status') }}</div>
+                        @endif
+
                         @error('userID')
                             <div class="error-text">{{ $message }}</div>
                         @enderror

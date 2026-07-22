@@ -19,7 +19,7 @@
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="error-container">
-                        @error('userID')
+                        <!-- @error('userID')
                             <div class="error-text">{{ $message }}</div>
                         @enderror
                         @error('password')
@@ -28,6 +28,16 @@
                         @error('login_error')
                             <div class="error-text">{{ $message }}</div>
                         @enderror
+                        -->
+                        @if($errors->any())
+                            <div class="error-text">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                     <input type="text" name="userID" value="{{ old('userID', request('email') ?? '') }}"
                         placeholder="ユーザーID（メールアドレス）">
