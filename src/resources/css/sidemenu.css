@@ -19,5 +19,6 @@
 .sidebar ul {
     display: flex;
     flex-direction: column;
+    padding-left: 12px;
     gap: 15px;
 }
