@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -48,3 +49,6 @@ Route::get('/privacy', function () {
     return view('privacy');
 })->name('privacy');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});

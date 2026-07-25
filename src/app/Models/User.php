@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function troupe()
+    {
+        return $this->hasOne(Troupe::class);
+    }
 }

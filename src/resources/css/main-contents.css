@@ -1,4 +1,8 @@
 .main-contents {
     color: black;
     text-align: center;
+    flex: 1;
+    /*【超重要】サイドバー以外の残りの横幅をいっぱいに広げる！ */
+    padding: 30px;
+    /* 端っこに文字がくっつかないように少し余白を入れると綺麗！ */
 }

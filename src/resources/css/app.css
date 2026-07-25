@@ -2,6 +2,7 @@
 @import './user-login.css';
 @import './register-top.css';
 @import './sidemenu.css';
+@import './main-contents';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
