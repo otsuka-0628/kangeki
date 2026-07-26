@@ -6,3 +6,8 @@
     padding: 30px;
     /* 端っこに文字がくっつかないように少し余白を入れると綺麗！ */
 }
+
+.main-contents h2 {
+    border-bottom: 1px solid black;
+    padding-bottom: 8px;
+}
