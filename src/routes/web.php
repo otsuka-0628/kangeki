@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TroupeController;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -40,6 +41,21 @@ Route::post('/user-register', [RegisterController::class, 'register']);
 Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    // 劇団情報の表示画面
+    Route::get('/troupe', [TroupeController::class, 'show'])->name('troupe.show');
+
+    // 劇団情報の入力・編集フォーム画面
+    Route::get('/troupe/edit', [TroupeController::class, 'edit'])->name('troupe.edit');
+
+    // 保存・更新処理
+    Route::post('/troupe', [TroupeController::class, 'storeOrUpdate'])->name('troupe.store');
+});
+
+
 
 Route::get('/terms', function () {
     return view('terms');
