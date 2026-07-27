@@ -38,10 +38,6 @@ Route::get('/user-register', [RegisterController::class, 'showRegisterForm'])->n
 
 Route::post('/user-register', [RegisterController::class, 'register']);
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home')->middleware('auth');
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -65,6 +61,3 @@ Route::get('/privacy', function () {
     return view('privacy');
 })->name('privacy');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-});
