@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TroupeController;
+use App\Http\Controllers\PerformanceController;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -49,6 +50,12 @@ Route::middleware(['auth'])->group(function () {
 
     // 保存・更新処理
     Route::post('/troupe', [TroupeController::class, 'storeOrUpdate'])->name('troupe.store');
+
+    //公演情報登録画面を表示するURL
+    Route::get('/performances/create', [PerformanceController::class, 'create'])->name('performances.create');
+
+    //フォームの入力データを保存するURL
+    Route::post('/performances', [PerformanceController::class, 'store'])->name('performances.store');
 });
 
 
