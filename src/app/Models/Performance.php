@@ -11,6 +11,7 @@ class Performance extends Model
 
     protected $fillable = [
         'troupe_id',
+        'sub_title',
         'title',
         'venue_prefecture',
         'venue_city',
@@ -33,6 +34,12 @@ class Performance extends Model
     public function troupe()
     {
         return $this->belongsTo(Troupe::class);
+    }
+
+    //1つの公演は「複数の公演日時（schedules）」を持っている
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
     }
 }
 

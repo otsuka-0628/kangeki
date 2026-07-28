@@ -56,3 +56,6 @@ git branch
 git status
 
 php artisan make:controller ForgotPasswordController
+
+git checkout main
+git pull origin main

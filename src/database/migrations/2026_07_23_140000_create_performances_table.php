@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('performances', function (Blueprint $table) {
             $table->id();
             $table->foreignID('troupe_id')->constrained('troupes')->onDelete('cascade');
+            $table->string('sub_title')->nullable();
             $table->string('title');
             $table->string('venue_prefecture', 20);
             $table->string('venue_city', 100);
