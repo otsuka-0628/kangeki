@@ -15,54 +15,70 @@
         @include('sidebar')
 
         <div class="main-contents">
-            <h2>予約受付中の公演</h2>
+            <h2>新規公演の登録</h2>
 
-            @if($performances->isEmpty())
-                <!-- 予約受付中の公演がない場合 -->
-                <div class="performance-container">
-                    <p>現在予約受付中の公演はありません。</p>
-                    <a href="#" class="btn-performance">
-                        公演情報を登録
-                    </a>
+            <!-- エラー表示 -->
+            @if($errors->any())
+                <div class="error-text">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-            @else
-                <!-- 予約受付中の公演がある場合（複数あればループでperformance-containerが増える） -->
-                @foreach($performances as $performance)
-                    <div class="performance-container">
+            @endif
 
-                        <!-- 冠タイトル（第〇〇公演） -->
-                        @if(!empty($performance->sub_title))
-                            <p class="performance-subtitle">{{ $performance->sub_title }}</p>
-                        @endif
+            <form action="{{ route('performances.store') }}" method="POST">
+                @csrf
 
-                        <!-- 公演タイトル -->
-                        <h3 class="performance-title">{{ $performance->title }}</h3>
+                <div class="create-container">
 
-                        <!-- 公演日時ごとの予約状況 -->
-                        <div class="resarvation-status">
-                            <h4>予約状況</h4>
-                            <ul>
-                                @foreach($performance->schedules as $schedule)
-                                    <li>
-                                        {{ $schedule->formatted_date }} :
-                                        <strong>{{ $schedule->reserved_seats_count }}</strong>
-                                    </li>
-                                @endforeach
-                            </ul>
+                    <!-- 冠タイトル -->
+                    <div class="form-group">
+                        <label class="form-label">冠タイトル</label>
+                        <input type="text" name="sub_title" value="{{ old('sub_title') }}" placeholder="例：第〇回公演"
+                            class="form-control">
+                    </div>
+
+                    <!-- 公演タイトル -->
+                    <div class="form-group">
+                        <label class="form-label">公演タイトル <span class="required-mark">*</span></label>
+                        <input type="text" name="title" value="{{ old('title') }}" required placeholder="例：夏の夜の夢"
+                            class="form-control">
+                    </div>
+
+                    <hr class="form-divider">
+
+                    <!-- 1. 開演日時エリア -->
+                    <div class="form-group">
+                        <div class="group-header">
+                            <label class="form-label">① 開演日時</label>
+                            <button type="button" id="add-schedule-btn" class="btn-add">＋開演日時を追加</button>
                         </div>
-
-                        <!-- 予約状況の抽出ボタン（Excel形式） -->
-                        <div class="performance-actions">
-                            <a href="#" class="btn-excel">
-                                予約状況をExcel抽出
-                            </a>
-                            <a href="#" class="btn-performance">
-                                公演情報を編集
-                            </a>
+                        <div id="schedule-container">
+                            <div class="schedule-item dynamic-item" data-index="0">
+                                <input type="text" class="schedule-input form-control" name="schedules[0][start_time]"
+                                    placeholder="例：8/1(土) 18:00開演">
+                            </div>
                         </div>
                     </div>
-                @endforeach
-            @endif
+
+                    <!-- 2. 日時別座席数エリア -->
+                    <div class="form-group">
+                        <label class="form-label">② 日時別座席数</label>
+                        <div id="seat-container">
+                            <div class="seat-item dynamic-item" data-index="0">
+                                <label class="seat-label sub-label">【開演日時 1】の座席数：</label>
+                                <input type="number" name="schedules[0][capacity]" placeholder="例：50"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 以下、同じような形でクラス化して作っていけばOK！ -->
+
+                </div>
+            </form>
         </div>
 
     </div>
