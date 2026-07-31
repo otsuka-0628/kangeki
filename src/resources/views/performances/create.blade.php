@@ -47,12 +47,12 @@
                             class="form-control">
                     </div>
 
-                    <hr class="form-divider">
+                    <!-- <hr class="form-divider"> -->
 
                     <!-- 1. 開演日時エリア -->
                     <div class="form-group">
                         <div class="group-header">
-                            <label class="form-label">① 開演日時</label>
+                            <label class="form-label">開演日時</label>
                             <button type="button" id="add-schedule-btn" class="btn-add">＋開演日時を追加</button>
                         </div>
                         <div id="schedule-container">
@@ -65,7 +65,7 @@
 
                     <!-- 2. 日時別座席数エリア -->
                     <div class="form-group">
-                        <label class="form-label">② 日時別座席数</label>
+                        <label class="form-label">日時別座席数</label>
                         <div id="seat-container">
                             <div class="seat-item dynamic-item" data-index="0">
                                 <label class="seat-label sub-label">【開演日時 1】の座席数：</label>
@@ -73,6 +73,14 @@
                                     class="form-control">
                             </div>
                         </div>
+
+                        <!-- チケット種類 -->
+                        <!-- チケット料金 -->
+                        <!-- 一人当たり予約上限枚数 -->
+                        <!-- 予約受付期限 -->
+                        <!-- 注意事項 -->
+
+
                     </div>
 
                     <!-- 以下、同じような形でクラス化して作っていけばOK！ -->
