@@ -1,0 +1,35 @@
+.create-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.required-mark {
+    color: red;
+}
+
+.sub-label {
+    font-size: 0.9em;
+    color: #555;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.dynamic-item {
+    margin-top: 10px;
+}
+
+.btn-add {
+    cursor: pointer;
+    /* ボタンの装飾など */
+}
