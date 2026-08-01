@@ -33,3 +33,12 @@
     cursor: pointer;
     /* ボタンの装飾など */
 }
+
+input[type="number"] {
+    border: 1px solid #000000;
+    padding: 4px;
+    width: 300px;
+    background-color: #fff;
+    color: #91522e9b;
+    box-sizing: border-box;
+}
