@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use app\Models\Performance;
-use App\Models\Scheduls;
+use App\Models\Performance;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PerformanceController extends Controller
 {
@@ -23,22 +24,18 @@ class PerformanceController extends Controller
         $validated = $request->validate([
             'sub_title' => 'nullable|string|max:255',
             'title' => 'required|string|max:255',
-            'venue_prefecture' => 'nullable|string|max:255',
-            'venue_city' => 'nullable|string|max:255',
-            'period_text' => 'nullable|string|max:255',
-            'max_tickets_per_person' => 'nullable|integer|min:1',
-            'end_of_reservation_at' => 'nullable|date',
-            'notes' => 'nullable|string',
-            'form_url_slug' => 'nullable|string|max:255',
+            'max_tickets_per_person' => 'required|interger|min:1',
+            'end_of_reservation_at' => 'required|date',
+            'notes' => 'nullable|array',
 
             //公演日時（複数入力される想定）のバリデーション
             'schedules' => 'nullable|array',
-            'schedules.*.performance_date' => 'required|date',
-            'schedules.*.start_time' => 'required',
+            'schedules.*.start_time' => 'nullable|string',
         ]);
 
         //ログインユーザーの劇団IDをセット
-        $user = Auth::user();
+        $user = Auth::user()->troupe;
+
         $validated['troupe_id'] = $user->troupe_id ?? null;
         $validated['is_published'] = true; // デフォルトで公開状態にしておく
 
