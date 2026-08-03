@@ -42,10 +42,8 @@ Route::post('/user-register', [RegisterController::class, 'register']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    // 劇団情報の表示画面
     Route::get('/troupe', [TroupeController::class, 'show'])->name('troupe.show');
 
-    // 劇団情報の入力・編集フォーム画面
     Route::get('/troupe/edit', [TroupeController::class, 'edit'])->name('troupe.edit');
 
     // 保存・更新処理
@@ -60,11 +58,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-
-// 公演登録画面（create）を開くための仮ルーティング
 Route::get('/performances/create', [PerformanceController::class, 'create'])->name('performances.create');
 
-// フォーム送信（保存）の処理用ルーティング（formのアクションで使ってるから書いておく）
 Route::post('/performances', [PerformanceController::class, 'store'])->name('performances.store');
 
 
