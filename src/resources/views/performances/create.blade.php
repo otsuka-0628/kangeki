@@ -108,8 +108,8 @@
                     <div class="form-group">
                         <label class="form-label">一人当たり予約上限枚数</label>
                         <div class="input-unit-wrapper">
-                            <input type="number" name="max_ticket_per_person"
-                                value="{{ old('max_ticket_per_person', 5) }}" min="1" class="form-control"><span
+                            <input type="number" name="max_tickets_per_person"
+                                value="{{ old('max_tickets_per_person', 5) }}" min="1" class="form-control"><span
                                 class="unit">枚</span>
                         </div>
                     </div>
@@ -117,8 +117,8 @@
                     <!-- 予約受付期限 -->
                     <div class="form-group">
                         <label class="form-label">予約受付期限</label>
-                        <input type="datetime-local" name="end-of-resarvation_at"
-                            value="{{ old('end_of_resarvation_at') }}" class="form-control">
+                        <input type="datetime-local" name="end_of_reservation_at"
+                            value="{{ old('end_of_reservation_at') }}" class="form-control">
                     </div>
 
                     <!-- 注意事項 -->
