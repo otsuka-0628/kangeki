@@ -21,16 +21,16 @@ class PerformanceController extends Controller
         $validated = $request->validate([
             'sub_title' => 'nullable|string|max:255',
             'title' => 'required|string|max:255',
-            'max_tickets_per_person' => 'required|interger|min:1',
+            'max_tickets_per_person' => 'required|integer|min:1',
             'end_of_reservation_at' => 'required|date',
             'notes' => 'nullable|array',
             'schedules' => 'nullable|array',
             'schedules.*.start_time' => 'nullable|string',
         ]);
 
-        $user = Auth::user()->troupe;
+        $troupe = Auth::user()->troupe;
 
-        $validated['troupe_id'] = $user->troupe_id ?? null;
+        $validated['troupe_id'] = $troupe ? $troupe->troupe_id : null;
         $validated['is_published'] = true;
         $performance = Performance::create($validated);
 
