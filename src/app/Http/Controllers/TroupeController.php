@@ -11,14 +11,14 @@ class TroupeController extends Controller
     public function show()
     {
         $troupe = Auth::user()->troupe;
+
         return view('troupes.show', compact('troupe'));
     }
 
     public function edit()
     {
-        $troupe = Auth::user()->troupe;
+        $troupe = Auth::user()->troupe ?? new Troupe();
 
-        // 都道府県のリスト
         $prefectures = [
             '北海道',
             '青森県',
@@ -86,12 +86,7 @@ class TroupeController extends Controller
 
         Auth::user()->troupe()->updateOrCreate(
             ['user_id' => Auth::id()],
-            [
-                'name' => $request->name,
-                'representative_name' => $request->representative_name,
-                'prefecture' => $request->prefecture,
-                'description' => $request->description,
-            ]
+            $validated
         );
 
         return redirect()->route('troupe.show')->with('success', '劇団情報を保存しました。');
