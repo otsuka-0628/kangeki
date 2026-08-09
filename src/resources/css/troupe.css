@@ -14,3 +14,13 @@
 .troupe-container p {
     color: red;
 }
+
+.btn-troupe {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 5px;
+    padding: 1px 10px;
+    color: rgb(100, 100, 100);
+}

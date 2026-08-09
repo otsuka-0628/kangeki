@@ -21,11 +21,18 @@
                 <!-- コンテナ名は仮 -->
                 <div class="troupe-container">
                     <p>未登録です。</p>
-                    <a href="#" class="btn-troupe">
+                    <a href="{{ route('troupe.edit') }}" class="btn-troupe">
                         劇団情報を登録
                     </a>
                 </div>
             @else
+
+                <div class="troupe-container">
+                    <p class="troupe-name">{{ $troupe->name }}</p>
+                    <p class="troupe-representative">{{ $troupe->representative_name }}</p>
+                    <p class="troupe-base">{{ $troupe->prefecture }}</p>
+                    <p class="troupe-description">{{ $troupe->description }}</p>
+                </div>
 
             @endif
 
