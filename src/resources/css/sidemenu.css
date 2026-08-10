@@ -9,7 +9,6 @@
     height: 100vh;
     width: 250px;
     flex-shrink: 0;
-    /*サイドバーが縮まないようにする*/
 }
 
 .sidebar-logo {

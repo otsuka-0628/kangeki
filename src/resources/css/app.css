@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './layout.css';
 @import './user-login.css';
 @import './register-top.css';
 @import './sidemenu.css';
