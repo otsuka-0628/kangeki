@@ -74,7 +74,7 @@ class TroupeController extends Controller
 
     public function storeOrUpdate(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'representative_name' => 'nullable|string|max:255',
             'prefecture' => 'required|string|max:255',

@@ -15,9 +15,9 @@ return new class extends Migration {
             $table->foreignID('troupe_id')->constrained('troupes')->onDelete('cascade');
             $table->string('sub_title')->nullable();
             $table->string('title');
-            $table->string('venue_prefecture', 20);
-            $table->string('venue_city', 100);
-            $table->string('period_text', 100);
+            // $table->string('venue_prefecture', 20);
+            // $table->string('venue_city', 100);
+            // $table->string('period_text', 100);
             $table->integer('max_tickets_per_person')->default(5);
             $table->dateTime('end_of_reservation_at');
             $table->text('notes')->nullable();
