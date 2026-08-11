@@ -17,13 +17,29 @@
         <div class="main-contents">
             <h2>劇団情報の登録</h2>
 
-            <input type="text" name="name" value="{{ old('name') }}" required placeholder="劇団名">
-            <input type="text" name="representative_name" value="{{ old('representative_name') }}" required
-                placeholder="代表者名">
+            <form action="{{ route('troupe.store') }}" method="POST">
+                @csrf
 
-            <select name="prefecture" id="prefecture"></select>
+                <input type="text" name="name" value="{{ old('name') }}" required placeholder="劇団名">
+                <input type="text" name="representative_name" value="{{ old('representative_name') }}" required
+                    placeholder="代表者名">
 
-            <input type="text" name="description" placeholder="劇団説明文">
+                <select name="prefecture" id="prefecture">
+                    <option value="">選択してください</option>
+
+                    @foreach($prefectures as $pref)
+                        <option value="{{ $pref }}" {{ old('prefecture', $troupe->prefecture) == $pref ? 'selected' : ''}}>
+                            {{ $pref }}
+                        </option>
+                    @endforeach
+
+                </select>
+
+                <input type="text" name="description" placeholder="劇団説明文">
+
+                <input type="submit" value="登録" class="btn-submit">
+            </form>
+
         </div>
     </div>
 </body>
