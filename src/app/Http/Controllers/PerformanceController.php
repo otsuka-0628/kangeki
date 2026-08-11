@@ -26,13 +26,32 @@ class PerformanceController extends Controller
             'notes' => 'nullable|array',
             'schedules' => 'nullable|array',
             'schedules.*.start_time' => 'nullable|string',
+            // 'is_published' => 'required|boolean',
         ]);
 
-        $troupe = Auth::user()->troupe;
+        $schedulesDate = $validated['schedules'] ?? [];
+        unset($validated['schedules']);
 
-        $validated['troupe_id'] = $troupe ? $troupe->troupe_id : null;
+        $troupe = Auth::user()->troupe;
+        if (!$troupe) {
+            return redirect()->back->withError(['error' => '先に劇団情報を登録してください。']);
+        }
+
+        $validated['troupe_id'] = $troupe ? $troupe->id : null;
         $validated['is_published'] = true;
+        $validated['form_url_slug'] = Str::random(10);
+
         $performance = Performance::create($validated);
+
+        // if (!empty($schedulesDate)) {
+        //     foreach ($schedulesDate as $schedule) {
+        //         if (!empty($schedule['start_time'])) {
+        //             $performance->schedules()->create([
+        //                 'start_time' => $schedule['start_time'],
+        //             ]);
+        //         }
+        //     }
+        // }
 
         return redirect()->route('home')->with('success', '公演情報を登録しました。');
     }

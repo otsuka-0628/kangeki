@@ -12,9 +12,11 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        $performances = Performance::where('troupe_id', $user->troupe_id ?? null)
-            ->with('schedules')
-            ->get();
+        $troupe = $user->troupe;
+
+        $performances = $troupe
+            ? Performance::where('troupe_id', $troupe->id)->get()
+            : collect();
 
 
 
