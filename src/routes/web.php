@@ -40,27 +40,32 @@ Route::get('/user-register', [RegisterController::class, 'showRegisterForm'])->n
 Route::post('/user-register', [RegisterController::class, 'register']);
 
 Route::middleware(['auth'])->group(function () {
+
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('/troupe', [TroupeController::class, 'show'])->name('troupe.show');
 
     Route::get('/troupe/edit', [TroupeController::class, 'edit'])->name('troupe.edit');
 
-    // 保存・更新処理
+
     Route::post('/troupe', [TroupeController::class, 'storeOrUpdate'])->name('troupe.store');
 
-    //公演情報登録画面を表示するURL
     Route::get('/performances/create', [PerformanceController::class, 'create'])->name('performances.create');
 
-    //フォームの入力データを保存するURL
     Route::post('/performances', [PerformanceController::class, 'store'])->name('performances.store');
+
+
+    Route::get('/account', [AccountController::class, 'show'])->name('account.show');
+
+    Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
+
+    Route::post('/account/email', [AccountController::class, 'updateEmail'])->name('account.updateEmail');
+
+    Route::post('/account/password', [AccountController::class, 'updatePassword'])->name('account.updatePassword');
+
 });
 
-
-
-Route::get('/performances/create', [PerformanceController::class, 'create'])->name('performances.create');
-
-Route::post('/performances', [PerformanceController::class, 'store'])->name('performances.store');
 
 
 
