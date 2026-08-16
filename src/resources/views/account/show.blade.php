@@ -11,7 +11,13 @@
 </head>
 
 <body>
+    <div class="dashboard-layout">
+        @include('sidebar')
 
+        <div class="main-contents">
+            <h2>予約受付中の公演</h2>
+        </div>
+    </div>
 </body>
 
 </html>
