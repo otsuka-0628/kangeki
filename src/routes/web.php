@@ -60,9 +60,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
 
-    Route::post('/account/email', [AccountController::class, 'updateEmail'])->name('account.updateEmail');
-
-    Route::post('/account/password', [AccountController::class, 'updatePassword'])->name('account.updatePassword');
+    Route::put('/account', [AccountController::class, 'update'])->name('account.update');
 
 });
 
