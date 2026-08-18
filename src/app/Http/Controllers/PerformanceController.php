@@ -55,4 +55,11 @@ class PerformanceController extends Controller
 
         return redirect()->route('home')->with('success', '公演情報を登録しました。');
     }
+
+    public function detail($id)
+    {
+        $performance = Performance::findOrFail($id);
+
+        return view('performances.detail', compact('performance'));
+    }
 }

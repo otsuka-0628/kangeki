@@ -38,7 +38,7 @@
                         <!-- 公演タイトル -->
                         <h3 class="performance-title">{{ $performance->title }}</h3>
 
-                        <a href="#" class="btn-performance">
+                        <a href="{{ route('performances.detail', $performance->id) }}" class="btn-performance">
                             詳細を確認
                         </a>
                     </div>
