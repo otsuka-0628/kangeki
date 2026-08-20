@@ -25,7 +25,7 @@ class PerformanceController extends Controller
             'end_of_reservation_at' => 'required|date',
             'notes' => 'nullable|array',
             'schedules' => 'nullable|array',
-            'schedules.*.start_time' => 'nullable|string',
+            'schedules.*.start_at' => 'nullable|string',
             // 'is_published' => 'required|boolean',
         ]);
 
@@ -43,15 +43,16 @@ class PerformanceController extends Controller
 
         $performance = Performance::create($validated);
 
-        // if (!empty($schedulesDate)) {
-        //     foreach ($schedulesDate as $schedule) {
-        //         if (!empty($schedule['start_time'])) {
-        //             $performance->schedules()->create([
-        //                 'start_time' => $schedule['start_time'],
-        //             ]);
-        //         }
-        //     }
-        // }
+        if (!empty($schedulesDate)) {
+            foreach ($schedulesDate as $schedule) {
+                if (!empty($schedule['start_at'])) {
+                    $performance->schedules()->create([
+                        'start_at' => $schedule['start_at'],
+                        'capacity' => $schedule['capacity'] ?? 0,
+                    ]);
+                }
+            }
+        }
 
         return redirect()->route('home')->with('success', '公演情報を登録しました。');
     }
