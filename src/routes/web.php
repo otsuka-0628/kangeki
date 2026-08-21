@@ -8,6 +8,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TroupeController;
 use App\Http\Controllers\PerformanceController;
+use App\Http\controllers\AccountController;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -51,9 +52,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/troupe', [TroupeController::class, 'storeOrUpdate'])->name('troupe.store');
 
+
+
     Route::get('/performances/create', [PerformanceController::class, 'create'])->name('performances.create');
 
     Route::post('/performances', [PerformanceController::class, 'store'])->name('performances.store');
+
+    Route::get('/performances/{id}', [Performancecontroller::class, 'detail'])->name('performances.detail');
 
 
     Route::get('/account', [AccountController::class, 'show'])->name('account.show');

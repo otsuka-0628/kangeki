@@ -17,19 +17,20 @@
         <div class="main-contents">
             <h2>新規公演の登録</h2>
 
-            <!-- エラー表示 -->
-            @if($errors->any())
-                <div class="error-text">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
             <form action="{{ route('performances.store') }}" method="POST">
                 @csrf
+
+                @if($errors->any())
+                    <div class="error-text">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
 
                 <div class="create-container">
 
@@ -57,7 +58,7 @@
                         </div>
                         <div id="schedule-container">
                             <div class="schedule-item dynamic-item" data-index="0">
-                                <input type="text" class="schedule-input form-control" name="schedules[0][start_time]"
+                                <input type="text" class="schedule-input form-control" name="schedules[0][start_at]"
                                     placeholder="例：8/1(土) 18:00開演">
                             </div>
                         </div>

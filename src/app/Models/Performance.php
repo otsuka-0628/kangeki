@@ -36,7 +36,7 @@ class Performance extends Model
     //1つの公演は「複数の公演日時（schedules）」を持っている
     public function schedules()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Schedule::class, 'performance_id');
     }
 }
 

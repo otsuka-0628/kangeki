@@ -17,6 +17,16 @@
         <div class="main-contents">
             <h2>劇団情報の登録</h2>
 
+            @if ($errors->any())
+                <div style="color: red; background-color: #fee; padding: 10px; margin-bottom: 10px; border: 1px solid red;">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('troupe.store') }}" method="POST">
                 @csrf
 
