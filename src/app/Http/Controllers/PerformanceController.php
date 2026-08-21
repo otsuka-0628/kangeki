@@ -34,7 +34,7 @@ class PerformanceController extends Controller
 
         $troupe = Auth::user()->troupe;
         if (!$troupe) {
-            return redirect()->back->withError(['error' => '先に劇団情報を登録してください。']);
+            return back()->withErrors(['先に劇団情報を登録してください。']);
         }
 
         $validated['troupe_id'] = $troupe ? $troupe->id : null;
@@ -62,5 +62,11 @@ class PerformanceController extends Controller
         $performance = Performance::findOrFail($id);
 
         return view('performances.detail', compact('performance'));
+    }
+
+
+    public function ticketType()
+    {
+        return $this->hasMany(TicketType::class);
     }
 }

@@ -19,8 +19,17 @@
 
             <p class="performance-subtitle">{{ $performance->sub_title }}</p>
             <p class="performance-title">{{ $performance->title }}</p>
-            <p class="schedules">{{ $performance->schedules }}</p>
-
+            @if($performance->schedules->isNotEmpty())
+                <p class="schedules-list">
+                <ul>
+                    @foreach($performance->schedules as $schedule)
+                        <li>{{ $schedule->start_at }}</li>
+                    @endforeach
+                </ul>
+                </p>
+            @else
+                <p>※開演日時の登録はありません。</p>
+            @endif
         </div>
     </div>
 </body>

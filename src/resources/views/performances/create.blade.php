@@ -17,19 +17,20 @@
         <div class="main-contents">
             <h2>新規公演の登録</h2>
 
-            <!-- エラー表示 -->
-            @if($errors->any())
-                <div class="error-text">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
             <form action="{{ route('performances.store') }}" method="POST">
                 @csrf
+
+                @if($errors->any())
+                    <div class="error-text">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
 
                 <div class="create-container">
 
