@@ -1,0 +1,41 @@
+.performance-container {
+    position: relative;
+    background-color: white;
+    min-height: 40vh;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.performance-container p {
+    color: #B1001D;
+}
+
+.btn-performance {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 5px;
+    padding: 1px 10px;
+    color: rgb(100, 100, 100);
+}
+
+.btn-addition {
+    position: relative;
+    background-color: white;
+    color: rgb(135, 135, 135);
+    min-height: 8vh;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+}
