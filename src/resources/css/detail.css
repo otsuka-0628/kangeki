@@ -1,0 +1,12 @@
+.detail-container {
+    position: relative;
+    background-color: white;
+    min-height: 40vh;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
