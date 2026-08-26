@@ -10,3 +10,48 @@
     justify-content: center;
     align-items: center;
 }
+
+.detail-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn {
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn-detail {
+    color: #333333;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: background-color 0.2s;
+}
+
+.btn-detail:hover {
+    background-color: #f5f5f5;
+}
+
+.btn-delete {
+    color: #e53e3e;
+    /* 赤文字 */
+    border: 1px solid #e53e3e;
+    background-color: #fff;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #e53e3e;
+    color: #ffffff;
+    /* ホバーした時に背景を赤にして文字を白にする */
+}
