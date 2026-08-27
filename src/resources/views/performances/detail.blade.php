@@ -20,13 +20,13 @@
             <div class="detail-container">
 
                 <div class="detail-buttons">
-                    <a href="#" class="btn btn-detail">予約フォームURL発行</a>
-                    <a href="#" class="btn btn-detail">予約者名簿抽出</a>
-                    <a href="#" class="btn btn-detail">編集</a>
+                    <a href="#" class="detail-btn detail-btn-action">予約フォームURL発行</a>
+                    <a href="#" class="detail-btn detail-btn-action">予約者名簿抽出</a>
+                    <a href="#" class="detail-btn detail-btn-action">編集</a>
                     <form action="#" mathod="POST" onsubmit="return cunfirm('本当に削除しますか？')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-delete">削除</button>
+                        <button type="submit" class="detail-btn detail-btn-delete">削除</button>
                     </form>
                 </div>
 

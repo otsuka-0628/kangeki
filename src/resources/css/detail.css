@@ -8,7 +8,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    text-align: left;
+    padding-left: 60px;
 }
 
 .detail-buttons {
@@ -16,14 +17,14 @@
     top: 20px;
     right: 20px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
 }
 
-.btn {
+.detail-btn {
     text-decoration: none;
     font-size: 14px;
-    padding: 6px 12px;
+    padding: 2px 10px;
     border-radius: 4px;
     background: none;
     border: none;
@@ -31,18 +32,18 @@
     font-family: inherit;
 }
 
-.btn-detail {
-    color: #333333;
+.detail-btn-action {
+    color: rgb(100, 100, 100);
     border: 1px solid #ccc;
     background-color: #fff;
     transition: background-color 0.2s;
 }
 
-.btn-detail:hover {
+.detail-btn-action:hover {
     background-color: #f5f5f5;
 }
 
-.btn-delete {
+.detail-btn-delete {
     color: #e53e3e;
     /* 赤文字 */
     border: 1px solid #e53e3e;
@@ -50,7 +51,7 @@
     transition: background-color 0.2s, color 0.2s;
 }
 
-.btn-delete:hover {
+.detail-btn-delete:hover {
     background-color: #e53e3e;
     color: #ffffff;
     /* ホバーした時に背景を赤にして文字を白にする */

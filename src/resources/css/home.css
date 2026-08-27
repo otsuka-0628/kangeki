@@ -1,18 +1,25 @@
 .performance-container {
     position: relative;
     background-color: white;
-    min-height: 40vh;
+    min-height: 30vh;
     width: 90%;
     margin-right: auto;
     margin-left: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    text-align: left;
+    padding-left: 60px;
 }
 
-.performance-container p {
-    color: #B1001D;
+.performance-subtitle {
+    color: black;
+    font-size: 24px;
+}
+
+.performance-title {
+    color: black;
+    font-size: 36px;
 }
 
 .btn-performance {
