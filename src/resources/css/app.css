@@ -6,6 +6,8 @@
 @import './main-contents';
 @import './create.css';
 @import './troupe.css';
+@import './home.css';
+@import './detail.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';

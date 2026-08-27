@@ -41,9 +41,14 @@
                         <a href="{{ route('performances.detail', $performance->id) }}" class="btn-performance">
                             詳細を確認
                         </a>
+
                     </div>
 
                 @endforeach
+
+                <a href="{{ route('performances.create') }}" class="btn-addition">
+                    ＋新規公演の追加
+                </a>
             @endif
         </div>
     </div>
