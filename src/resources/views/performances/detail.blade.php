@@ -22,11 +22,14 @@
                 <div class="detail-buttons">
                     <a href="#" class="detail-btn detail-btn-action">予約フォームURL発行</a>
                     <a href="#" class="detail-btn detail-btn-action">予約者名簿抽出</a>
-                    <a href="#" class="detail-btn detail-btn-action">編集</a>
-                    <form action="#" mathod="POST" onsubmit="return cunfirm('本当に削除しますか？')">
+                    <a href="{{ route('performances.edit', $performance->id) }}"
+                        class="detail-btn detail-btn-action">編集</a>
+                    <form action="{{ route('performances.destroy', $performance->id) }}" method="POST"
+                        onsubmit="return confirm('本当に削除しますか？')">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="detail-btn detail-btn-delete">削除</button>
+                        <!-- テスト用の単純なリンク（GETで叩いてみるテスト） -->
                     </form>
                 </div>
 

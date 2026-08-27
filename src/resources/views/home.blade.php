@@ -17,6 +17,13 @@
         <div class="main-contents">
             <h2>予約受付中の公演</h2>
 
+            @if (session('success'))
+                <div
+                    style="color: green; background-color: #e6ffe6; border: 1px solid green; padding: 10px; margin-bottom: 15px; border-radius: 4px; text-align: center;">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             @if($performances->isEmpty())
 
                 <div class="performance-container">

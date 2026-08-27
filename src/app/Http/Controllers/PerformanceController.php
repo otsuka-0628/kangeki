@@ -69,4 +69,40 @@ class PerformanceController extends Controller
     {
         return $this->hasMany(TicketType::class);
     }
+
+
+    public function edit($id)
+    {
+        $performance = Performance::findrFail($id);
+        return view('performances.edit', compact('performance'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'sub_title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
+            'max_tickets_per_person' => 'required|integer|min:1',
+            'end_of_reservation_at' => 'required|date',
+            'notes' => 'nullable|array',
+            'schedules' => 'nullable|array',
+            'schedules.*.start_at' => 'nullable|string',
+        ]);
+
+        $performance = Performance::findOrFail($id);
+        $performance->update([
+            'title' => $request->title,
+            'sub_title' => $request->sub_title,
+        ]);
+
+        return redirect()->route('home', $performance->id)->with('success', '公演情報を更新しました。');
+    }
+
+    public function destroy($id)
+    {
+
+        $performance = Performance::findOrFail($id);
+        $performance->delete();
+        return redirect()->route('home')->with('success', '公演を削除しました。');
+    }
 }

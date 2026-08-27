@@ -12,6 +12,12 @@
     padding-left: 60px;
 }
 
+.performance-container p {
+    color: red;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .performance-subtitle {
     color: black;
     font-size: 24px;
