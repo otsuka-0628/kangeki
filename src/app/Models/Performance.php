@@ -33,10 +33,14 @@ class Performance extends Model
         return $this->belongsTo(Troupe::class);
     }
 
-    //1つの公演は「複数の公演日時（schedules）」を持っている
     public function schedules()
     {
         return $this->hasMany(Schedule::class, 'performance_id');
+    }
+
+    public function ticketTypes()
+    {
+        return $this->hasMany(TicketType::class);
     }
 }
 

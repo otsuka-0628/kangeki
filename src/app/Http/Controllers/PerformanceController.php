@@ -65,21 +65,16 @@ class PerformanceController extends Controller
     }
 
 
-    public function ticketType()
-    {
-        return $this->hasMany(TicketType::class);
-    }
-
 
     public function edit($id)
     {
-        $performance = Performance::findrFail($id);
+        $performance = Performance::findOrFail($id);
         return view('performances.edit', compact('performance'));
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validated = $request->validate([
             'sub_title' => 'nullable|string|max:255',
             'title' => 'required|string|max:255',
             'max_tickets_per_person' => 'required|integer|min:1',
@@ -90,12 +85,24 @@ class PerformanceController extends Controller
         ]);
 
         $performance = Performance::findOrFail($id);
-        $performance->update([
-            'title' => $request->title,
-            'sub_title' => $request->sub_title,
-        ]);
 
-        return redirect()->route('home', $performance->id)->with('success', '公演情報を更新しました。');
+        $schedulesData = $validated['schedulas'] ?? [];
+        unset($validated['schedules']);
+
+        $performance->update($validated);
+
+        if (!empty($schedulesData)) {
+            foreach ($schedulesData as $schedule) {
+                if (!empty($schedule['start_at'])) {
+                    $performance->schedules()->create([
+                        'start_at' => $schedule['start_at'],
+                        'capacity' => $schedule['capacity'] ?? 0,
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('performances.detail', $performance->id)->with('success', '公演情報を更新しました。');
     }
 
     public function destroy($id)
