@@ -12,7 +12,7 @@
     padding-left: 60px;
 }
 
-.performance-container p {
+.no-performance-msg {
     color: red;
     margin-right: auto;
     margin-left: auto;
