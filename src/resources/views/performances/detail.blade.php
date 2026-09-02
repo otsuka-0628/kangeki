@@ -40,7 +40,7 @@
                     <p class="schedules-list">
                     <ul>
                         @foreach($performance->schedules as $schedule)
-                            <li>{{ $schedule->start_at }}</li>
+                            <li>{{ \Carbon\Carbon::parse($schedule->start_at)->isoFormat('M月D日(ddd) HH:mm') }}</li>
                         @endforeach
                     </ul>
                     </p>

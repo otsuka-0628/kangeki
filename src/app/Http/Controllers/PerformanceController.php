@@ -25,7 +25,7 @@ class PerformanceController extends Controller
             'end_of_reservation_at' => 'required|date',
             'notes' => 'nullable|array',
             'schedules' => 'nullable|array',
-            'schedules.*.start_at' => 'nullable|string',
+            'schedules.*.start_at' => 'nullable|date',
             // 'is_published' => 'required|boolean',
         ]);
 
@@ -81,7 +81,7 @@ class PerformanceController extends Controller
             'end_of_reservation_at' => 'required|date',
             'notes' => 'nullable|array',
             'schedules' => 'nullable|array',
-            'schedules.*.start_at' => 'nullable|string',
+            'schedules.*.start_at' => 'nullable|date',
         ]);
 
         $performance = Performance::findOrFail($id);
