@@ -30,9 +30,9 @@
             <form action="{{ route('troupe.store') }}" method="POST">
                 @csrf
 
-                <input type="text" name="name" value="{{ old('name') }}" required placeholder="劇団名">
-                <input type="text" name="representative_name" value="{{ old('representative_name') }}" required
-                    placeholder="代表者名">
+                <input type="text" name="name" value="{{ old('name', $troupe->name) }}" required placeholder="劇団名">
+                <input type="text" name="representative_name"
+                    value="{{ old('representative_name', $troupe->representative_name) }}" required placeholder="代表者名">
 
                 <select name="prefecture" id="prefecture">
                     <option value="">選択してください</option>
@@ -45,9 +45,9 @@
 
                 </select>
 
-                <input type="text" name="description" placeholder="劇団説明文">
+                <input type="text" name="description" value="{{ old('description') }}" placeholder="劇団説明文">
 
-                <input type="submit" value="登録" class="btn-submit">
+                <input type="submit" value="{{ $troupe->exists ? '更新' : '登録' }}" class="btn-submit">
             </form>
 
         </div>
