@@ -45,7 +45,8 @@
 
                 </select>
 
-                <input type="text" name="description" value="{{ old('description') }}" placeholder="劇団説明文">
+                <input type="text" name="description" value="{{ old('description', $troupe->description) }}"
+                    placeholder="劇団説明文">
 
                 <input type="submit" value="{{ $troupe->exists ? '更新' : '登録' }}" class="btn-submit">
             </form>
