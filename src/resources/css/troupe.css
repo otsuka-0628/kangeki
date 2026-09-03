@@ -8,11 +8,38 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* align-items: center; */
+}
+
+.no-troupe-container {
+    position: relative;
+    background-color: white;
+    color: red;
+    min-height: 40vh;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-.troupe-container p {
-    color: red;
+.troupe-info {
+    text-align: left;
+    padding: 50px 60px;
+}
+
+.troupe-info dt {
+    color: #7c7c7c;
+}
+
+.troupe-info dd {
+    padding-bottom: 10px;
+}
+
+.troupe-name {
+    font-size: 24px;
 }
 
 .btn-troupe {

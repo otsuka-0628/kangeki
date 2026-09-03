@@ -25,7 +25,7 @@ class PerformanceController extends Controller
             'end_of_reservation_at' => 'required|date',
             'notes' => 'nullable|array',
             'schedules' => 'nullable|array',
-            'schedules.*.start_at' => 'nullable|string',
+            'schedules.*.start_at' => 'nullable|date',
             // 'is_published' => 'required|boolean',
         ]);
 
@@ -65,8 +65,51 @@ class PerformanceController extends Controller
     }
 
 
-    public function ticketType()
+
+    public function edit($id)
     {
-        return $this->hasMany(TicketType::class);
+        $performance = Performance::findOrFail($id);
+        return view('performances.edit', compact('performance'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'sub_title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
+            'max_tickets_per_person' => 'required|integer|min:1',
+            'end_of_reservation_at' => 'required|date',
+            'notes' => 'nullable|array',
+            'schedules' => 'nullable|array',
+            'schedules.*.start_at' => 'nullable|date',
+        ]);
+
+        $performance = Performance::findOrFail($id);
+
+        $schedulesData = $validated['schedulas'] ?? [];
+        unset($validated['schedules']);
+
+        $performance->update($validated);
+
+        if (!empty($schedulesData)) {
+            foreach ($schedulesData as $schedule) {
+                if (!empty($schedule['start_at'])) {
+                    $performance->schedules()->create([
+                        'start_at' => $schedule['start_at'],
+                        'capacity' => $schedule['capacity'] ?? 0,
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('performances.detail', $performance->id)->with('success', '公演情報を更新しました。');
+    }
+
+    public function destroy($id)
+    {
+
+        $performance = Performance::findOrFail($id);
+        $performance->delete();
+        return redirect()->route('home')->with('success', '公演を削除しました。');
     }
 }

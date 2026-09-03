@@ -61,6 +61,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/performances/{id}', [Performancecontroller::class, 'detail'])->name('performances.detail');
 
 
+    Route::get('/performances/{id}/edit', [PerformanceController::class, 'edit'])->name('performances.edit');
+
+    Route::put('/performances/{id}', [PerformanceController::class, 'update'])->name('performances.update');
+
+    Route::delete('/performances/{id}', [PerformanceController::class, 'destroy'])->name('performances.destroy');
+
+
     Route::get('/account', [AccountController::class, 'show'])->name('account.show');
 
     Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');

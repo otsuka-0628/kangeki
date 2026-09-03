@@ -17,10 +17,16 @@
         <div class="main-contents">
             <h2>予約受付中の公演</h2>
 
+            @if (session('success'))
+                <div style="color: red; padding: 10px; margin-bottom: 15px; text-align: center;">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             @if($performances->isEmpty())
 
-                <div class="performance-container">
-                    <p>現在予約受付中の公演はありません。</p>
+                <div class="no-performance-container">
+                    <p class="no-performance-msg">現在予約受付中の公演はありません。</p>
                     <a href="{{ route('performances.create') }}" class="btn-performance">
                         公演情報を登録
                     </a>

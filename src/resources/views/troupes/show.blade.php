@@ -19,8 +19,8 @@
             @if(!$troupe)
 
                 <!-- コンテナ名は仮 -->
-                <div class="troupe-container">
-                    <p>未登録です。</p>
+                <div class="no-troupe-container">
+                    <p class="no-troupe-msg">未登録です。</p>
                     <a href="{{ route('troupe.edit') }}" class="btn-troupe">
                         劇団情報を登録
                     </a>
@@ -28,12 +28,23 @@
             @else
 
                 <div class="troupe-container">
-                    <p class="troupe-name">{{ $troupe->name }}</p>
-                    <p class="troupe-representative">{{ $troupe->representative_name }}</p>
-                    <p class="troupe-base">{{ $troupe->prefecture }}</p>
-                    <p class="troupe-description">{{ $troupe->description }}</p>
-                </div>
+                    <dl class="troupe-info">
+                        <dt>劇団名</dt>
+                        <dd class="troupe-name">{{ $troupe->name }}</dd>
 
+                        <dt>代表者</dt>
+                        <dd class="troupe-representative">{{ $troupe->representative_name }}</dd>
+
+                        <dt>活動拠点</dt>
+                        <dd class="troupe-base">{{ $troupe->prefecture }}</dd>
+
+                        <dt>劇団紹介</dt>
+                        <dd class="troupe-description">{{ $troupe->description }}</dd>
+                    </dl>
+
+                    <a href="{{ route('troupe.edit') }}" class="btn-troupe">編集</a>
+
+                </div>
             @endif
 
         </div>

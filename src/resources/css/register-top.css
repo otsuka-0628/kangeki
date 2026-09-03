@@ -3,17 +3,13 @@
 }
 
 .rt-bg {
-    /* 画像を画面いっぱいに広げるおまじない */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* コンテンツが何もないと高さが0になるから高さを指定 */
     min-height: 100vh;
     width: 100%;
-    /* 横幅を画面いっぱいに */
     margin: 0;
-    /* 画面の高さ100%分 */
     display: flex;
     flex-direction: column;
     align-items: center;

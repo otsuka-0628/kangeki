@@ -58,8 +58,8 @@
                         </div>
                         <div id="schedule-container">
                             <div class="schedule-item dynamic-item" data-index="0">
-                                <input type="text" class="schedule-input form-control" name="schedules[0][start_at]"
-                                    placeholder="例：8/1(土) 18:00開演">
+                                <input type="datetime-local" class="schedule-input form-control"
+                                    name="schedules[0][start_at]">
                             </div>
                         </div>
                     </div>
