@@ -12,6 +12,20 @@
     padding-left: 60px;
 }
 
+.no-performance-container {
+    position: relative;
+    background-color: white;
+    min-height: 30vh;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
 .no-performance-msg {
     color: red;
     margin-right: auto;

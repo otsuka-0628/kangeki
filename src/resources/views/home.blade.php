@@ -25,7 +25,7 @@
 
             @if($performances->isEmpty())
 
-                <div class="performance-container">
+                <div class="no-performance-container">
                     <p class="no-performance-msg">現在予約受付中の公演はありません。</p>
                     <a href="{{ route('performances.create') }}" class="btn-performance">
                         公演情報を登録
