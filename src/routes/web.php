@@ -96,3 +96,10 @@ Route::post('/p/{slug}/reserve', [ReservationController::class, 'store'])
 
 Route::get('/reservations/thanks', [ReservationController::class, 'thanks'])
     ->name('reservations.thanks');
+
+
+Route::prefix('reservations/manage/{token}')->name('reservations.manage.')->group(function () {
+    Route::get('/', [ReservationController::class, 'manage'])->name('show');
+    Route::put('/', [ReservationController::class, 'update'])->name('update');
+    Route::delete('/', [ReservationController::class, 'cancel'])->name('cancel');
+});

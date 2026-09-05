@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KANGEKI</title>
     @vite([
-        'resources/css/app.css'
+        'resources/css/app.css',
+        'resources/js/performance-detail'
     ])
 </head>
 
@@ -20,7 +21,12 @@
             <div class="detail-container">
 
                 <div class="detail-buttons">
-                    <a href="#" class="detail-btn detail-btn-action">予約フォームURL発行</a>
+
+                    <button type="button" id="copyUrlBtn" class="detail-btn detail-btn-action">
+                        URLをコピー
+                    </button>
+
+
                     <a href="#" class="detail-btn detail-btn-action">予約者名簿抽出</a>
                     <a href="{{ route('performances.edit', $performance->id) }}"
                         class="detail-btn detail-btn-action">編集</a>
@@ -33,6 +39,14 @@
                     </form>
                 </div>
 
+                @if($performance->form_url_slug)
+                    <div class="url-display-box">
+                        <span class="url-label">予約フォームURL：</span>
+                        <input type="text" id="reservationUrlInput"
+                            value="{{ route('reservations.create', $performance->form_url_slug) }}" readonly
+                            class="url-input">
+                    </div>
+                @endif
 
                 <p class="performance-subtitle">{{ $performance->sub_title }}</p>
                 <p class="performance-title">{{ $performance->title }}</p>

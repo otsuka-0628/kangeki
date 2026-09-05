@@ -20,13 +20,16 @@ class Reservation extends Model
         'is_checked_in',
     ];
 
-    public function reservationDetails()
+    public function details()
     {
-        return $this->hasMany(ReservationDetail::class);
+        return $this->hasMany(ReservationDetail::class, 'reservation_id');
     }
 
-    public function performanceSchedule()
+    public function schedule()
     {
         return $this->belongsTo(Schedule::class, 'performance_schedule_id');
     }
+
+
+
 }
