@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>公演情報登録</title>
     @vite([
-        'resources/css/app.css'
+        'resources/css/app.css',
+        'resources/js/performance-form.js'
     ])
 </head>
 
@@ -60,6 +61,7 @@
                             <div class="schedule-item dynamic-item" data-index="0">
                                 <input type="datetime-local" class="schedule-input form-control"
                                     name="schedules[0][start_at]">
+                                <button type="button" class="btn-remove remove-schedule-btn">削除</button>
                             </div>
                         </div>
                     </div>
@@ -72,7 +74,6 @@
                                 <label class="seat-label sub-label">【開演日時 1】</label>
                                 <input type="number" name="schedules[0][capacity]" placeholder="例：50"
                                     class="form-control">
-
                             </div>
                         </div>
                     </div>
@@ -81,12 +82,13 @@
                     <div class="form-group">
                         <div class="group-header">
                             <label class="form-label">チケット種類</label>
-                            <button type="button" id="add-ticket-btn">＋チケット種類を追加</button>
+                            <button type="button" id="add-ticket-btn" class="btn-add">＋チケット種類を追加</button>
                         </div>
                         <div id="ticket-type-container">
                             <div class="ticket-type-item dynamic-item" data-index="0">
                                 <input type="text" class="ticket-type-input form-control" name="tickets[0][name]"
                                     placeholder="例：一般、学生、前売り等">
+                                <button type="button" class="btn-remove remove-ticket-btn">削除</button>
                             </div>
                         </div>
                     </div>

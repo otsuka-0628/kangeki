@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TroupeController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\controllers\AccountController;
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -78,8 +79,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-
-
 Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
@@ -88,3 +87,12 @@ Route::get('/privacy', function () {
     return view('privacy');
 })->name('privacy');
 
+
+Route::get('/p/{slug}/reserve', [ReservationController::class, 'create'])
+    ->name('reservations.create');
+
+Route::post('/p/{slug}/reserve', [ReservationController::class, 'store'])
+    ->name('reservations.store');
+
+Route::get('/reservations/thanks', [ReservationController::class, 'thanks'])
+    ->name('reservations.thanks');
