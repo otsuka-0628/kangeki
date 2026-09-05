@@ -54,5 +54,32 @@
 .detail-btn-delete:hover {
     background-color: #e53e3e;
     color: #ffffff;
-    /* ホバーした時に背景を赤にして文字を白にする */
+}
+
+.url-display-box {
+    margin-bottom: 15px;
+    padding: 8px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 80%;
+}
+
+.url-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #4a5568;
+    white-space: nowrap;
+}
+
+.url-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    color: #2d3748;
+    outline: none;
 }

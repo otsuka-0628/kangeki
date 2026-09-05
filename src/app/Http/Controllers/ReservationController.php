@@ -106,4 +106,95 @@ class ReservationController extends Controller
     {
         return view('reservations.thanks');
     }
+
+
+    public function manage(string $token)
+    {
+        $reservation = Reservation::where('reservation_token', $token)
+            ->with(['schedule.performance.ticketTypes', 'details'])
+            ->firstOrFail();
+
+        return view('reservations.manage', compact('reservation'));
+    }
+
+
+    public function update(Request $request, string $token)
+    {
+        $reservation = Reservation::where('reservation_token', $token)
+            ->where('status', 'reserved')
+            ->firstOrFail();
+
+        $performance = $reservation->schedule->performance;
+        $maxLimit = $performance->max_tickets_per_person;
+
+        $validated = $request->validate([
+            'tickets' => 'nullable|array',
+            'tickets.*' => "integer|min:0|max:{$maxLimit}",
+            'default_quantity' => "nullable|integer|min:1|max:{$maxLimit}",
+            'customer_name' => 'required|string|max:255',
+            'customer_phone' => 'nullable|string|max:50',
+            'notes' => 'nullable|string|max:1000',
+        ]);
+
+        $hasTicketTypes = $performance->ticketTypes()->exists();
+
+        if ($hasTicketTypes) {
+            $totalQuantity = array_sum($request->input('tickets', []));
+        } else {
+            $totalQuantity = (int) $request->input('default_quantity', 0);
+        }
+
+        if ($totalQuantity <= 0) {
+            return back()->withErrors(['tickets' => 'チケットを1枚以上選択してください。'])->withInput();
+        }
+
+        if ($totalQuantity > $maxLimit) {
+            return back()->withErrors(['tickets' => "お一人様最大 {$maxLimit} 枚までしか予約できません。"])->withInput();
+        }
+
+        DB::transaction(function () use ($reservation, $validated, $request, $hasTicketTypes) {
+
+            $reservation->update([
+                'customer_name' => $validated['customer_name'],
+                'customer_phone' => $validated['customer_phone'] ?? null,
+                'notes' => $validated['notes'] ?? null,
+            ]);
+
+
+            $reservation->details()->delete();
+
+            if ($hasTicketTypes) {
+                foreach ($request->input('tickets', []) as $ticketTypeId => $quantity) {
+                    if ($quantity > 0) {
+                        ReservationDetail::create([
+                            'reservation_id' => $reservation->id,
+                            'ticket_type_id' => $ticketTypeId,
+                            'quantity' => $quantity,
+                        ]);
+                    }
+                }
+            } else {
+                ReservationDetail::create([
+                    'reservation_id' => $reservation->id,
+                    'ticket_type_id' => null,
+                    'quantity' => (int) $request->input('default_quantity'),
+                ]);
+            }
+        });
+
+        return back()->with('status', '予約内容を更新しました。');
+    }
+
+
+
+    public function cancel(string $token)
+    {
+        $reservation = Reservation::where('reservation_token', $token)
+            ->where('status', 'reserved')
+            ->firstOrFail();
+
+        $reservation->update(['status' => 'cancelled']);
+
+        return back()->with('status', 'ご予約をキャンセルいたしました。');
+    }
 }
