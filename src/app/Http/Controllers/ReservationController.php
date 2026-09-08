@@ -124,6 +124,12 @@ class ReservationController extends Controller
             ->where('status', 'reserved')
             ->firstOrFail();
 
+        $endAt = $reservation->schedule->performance->end_of_reservation_at;
+        if ($endAt && \Carbon\Carbon::now()->greaterThan($endAt)) {
+            return back()->withErrors(['tickets' => '予約受付期限を過ぎているため、変更できません。']);
+        }
+
+
         $performance = $reservation->schedule->performance;
         $maxLimit = $performance->max_tickets_per_person;
 
@@ -192,6 +198,12 @@ class ReservationController extends Controller
         $reservation = Reservation::where('reservation_token', $token)
             ->where('status', 'reserved')
             ->firstOrFail();
+
+        $endAt = $reservation->schedule->performance->end_of_reservation_at;
+        if ($endAt && \Carbon\Carbon::now()->greaterThan($endAt)) {
+            return back()->withErrors(['tickets' => '予約受付期限を過ぎているため、キャンセルできません。']);
+        }
+
 
         $reservation->update(['status' => 'cancelled']);
 
