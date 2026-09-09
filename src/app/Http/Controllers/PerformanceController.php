@@ -26,11 +26,16 @@ class PerformanceController extends Controller
             'notes' => 'nullable|array',
             'schedules' => 'nullable|array',
             'schedules.*.start_at' => 'nullable|date',
-            // 'is_published' => 'required|boolean',
+            'schedules.*.capacity' => 'nullable|integer|min:0',
+            'tickets' => 'nullable|array',
+            'tickets.*.name' => 'nullable|string|max:255',
+            'tickets.*.price' => 'nullable|integer|min:0',
         ]);
 
         $schedulesDate = $validated['schedules'] ?? [];
-        unset($validated['schedules']);
+        $ticketsData = $validated['tickets'] ?? [];
+
+        unset($validated['schedules'], $validated['tickets']);
 
         $troupe = Auth::user()->troupe;
         if (!$troupe) {
@@ -54,6 +59,17 @@ class PerformanceController extends Controller
             }
         }
 
+        if (!empty($ticketsData)) {
+            foreach ($ticketsData as $ticket) {
+                if (!empty($ticket['name'])) {
+                    $performance->ticketTypes()->create([
+                        'name' => $ticket['name'],
+                        'price' => $ticket['price'] ?? 0,
+                    ]);
+                }
+            }
+        }
+
         return redirect()->route('home')->with('success', '公演情報を登録しました。');
     }
 
@@ -68,7 +84,8 @@ class PerformanceController extends Controller
 
     public function edit($id)
     {
-        $performance = Performance::findOrFail($id);
+        $performance = Performance::with(['schedules', 'ticketTypes'])->findOrFail($id);
+
         return view('performances.edit', compact('performance'));
     }
 

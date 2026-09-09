@@ -12,6 +12,8 @@
 </head>
 
 <body>
+
+
     <div class="dashboard-layout">
         @include('sidebar')
 
@@ -56,15 +58,18 @@
                         </div>
                         <div id="schedule-container">
                             @forelse($performance->schedules as $index => $schedule)
+
                                 <div class="schedule-item dynamic-item" data-index="{{ $index }}">
                                     <input type="datetime-local" class="schedule-input form-control"
                                         name="schedules[{{ $index }}][start_at]"
-                                        value="{{ old("schedules.{$index}.start_at", $schedule->start_at ? \Carbon\Carbon::parse($schedule->start_at)->format('Y-m-d\TH:i') : '') }}">
+                                        value="{{ old("schedules.{$index}.start_at", $schedule->start_at) }}">
+                                    <button type="button" class="btn-remove remove-schedule-btn">削除</button>
                                 </div>
                             @empty
                                 <div class="schedule-item dynamic-item" data-index="0">
                                     <input type="datetime-local" class="schedule-input form-control"
                                         name="schedules[0][start_at]">
+                                    <button type="button" class="btn-remove remove-schedule-btn">削除</button>
                                 </div>
                             @endforelse
                         </div>
@@ -104,11 +109,13 @@
                                         name="tickets[{{ $index }}][name]"
                                         value="{{ old("tickets.{$index}.name", $ticket->name) }}"
                                         placeholder="例：一般、学生、前売り等">
+                                    <button type="button" class="btn-remove remove-ticket-btn">削除</button>
                                 </div>
                             @empty
                                 <div class="ticket-type-item dynamic-item" data-index="0">
                                     <input type="text" class="ticket-type-input form-control" name="tickets[0][name]"
                                         placeholder="例：一般、学生、前売り等">
+                                    <button type="button" class="btn-remove remove-ticket-btn">削除</button>
                                 </div>
                             @endforelse
                         </div>

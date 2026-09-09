@@ -8,6 +8,12 @@
 </head>
 
 <body>
+    @php
+        $performance = $reservation->schedule->performance;
+        $endAt = $performance->end_of_reservation_at;
+        $isExpired = $endAt ? \Carbon\Carbon::now()->greaterThan($endAt) : false;
+    @endphp
+
     <h2>予約内容の確認・変更</h2>
 
     @if (session('status'))
@@ -30,7 +36,8 @@
         <p style="margin: 5px 0;"><strong>予約番号：</strong> #{{ $reservation->id }}</p>
         <p style="margin: 5px 0;"><strong>公演名：</strong> {{ $reservation->schedule->performance->title }}</p>
         <p style="margin: 5px 0;"><strong>日時：</strong>
-            {{ \Carbon\Carbon::parse($reservation->schedule->start_at)->format('Y年m月d日 H:i') }}</p>
+            {{ \Carbon\Carbon::parse($reservation->schedule->start_at)->format('Y年m月d日 H:i') }}
+        </p>
         <p style="margin: 5px 0;"><strong>ステータス：</strong>
             @if($reservation->status === 'cancelled')
                 <span style="color: red; font-weight: bold;">キャンセル済み</span>
@@ -41,44 +48,54 @@
     </div>
 
     @if($reservation->status === 'reserved')
-        <form action="{{ route('reservations.manage.update', $reservation->reservation_token) }}" method="POST">
-            @csrf
-            @method('PUT')
 
-            <h3>枚数の変更</h3>
-            @php
-                $ticketTypes = $reservation->schedule->performance->ticketTypes;
-                $maxLimit = $reservation->schedule->performance->max_tickets_per_person;
-                $currentDetails = $reservation->details->pluck('quantity', 'ticket_type_id')->toArray();
-            @endphp
+        @if($isExpired)
+            <div style="padding: 15px; background-color: #fff3cd; color: #856404; border-radius: 5px; margin-bottom: 20px;">
+                <strong>【Web受付終了のお知らせ】</strong><br>
+                予約変更・キャンセルのWeb受付期間（{{ \Carbon\Carbon::parse($endAt)->format('Y年m月d日 H:i') }}まで）を過ぎているため、Webからの変更・取り消しはできません。<br>
+                内容の変更やキャンセルをご希望の場合は、お手数ですが直接劇団までご連絡ください。
+            </div>
+        @else
 
-            @if($ticketTypes->count() > 0)
-                @foreach($ticketTypes as $type)
-                    @php $qty = $currentDetails[$type->id] ?? 0; @endphp
+            <form action="{{ route('reservations.manage.update', $reservation->reservation_token) }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <h3>枚数の変更</h3>
+                @php
+                    $ticketTypes = $reservation->schedule->performance->ticketTypes;
+                    $maxLimit = $reservation->schedule->performance->max_tickets_per_person;
+                    $currentDetails = $reservation->details->pluck('quantity', 'ticket_type_id')->toArray();
+                @endphp
+
+                @if($ticketTypes->count() > 0)
+                    @foreach($ticketTypes as $type)
+                        @php $qty = $currentDetails[$type->id] ?? 0; @endphp
+                        <div style="margin-bottom: 10px;">
+                            <label>{{ $type->name }} ({{ number_format($type->price) }}円): </label>
+                            <select name="tickets[{{ $type->id }}]">
+                                @for($i = 0; $i <= $maxLimit; $i++)
+                                    <option value="{{ $i }}" {{ old("tickets.{$type->id}", $qty) == $i ? 'selected' : '' }}>
+                                        {{ $i }} 枚
+                                    </option>
+                                @endfor
+                            </select>
+                        </div>
+                    @endforeach
+                @else
+                    @php $qty = $reservation->details->first()->quantity ?? 1; @endphp
                     <div style="margin-bottom: 10px;">
-                        <label>{{ $type->name }} ({{ number_format($type->price) }}円): </label>
-                        <select name="tickets[{{ $type->id }}]">
-                            @for($i = 0; $i <= $maxLimit; $i++)
-                                <option value="{{ $i }}" {{ old("tickets.{$type->id}", $qty) == $i ? 'selected' : '' }}>
+                        <label>枚数: </label>
+                        <select name="default_quantity">
+                            @for($i = 1; $i <= $maxLimit; $i++)
+                                <option value="{{ $i }}" {{ old('default_quantity', $qty) == $i ? 'selected' : '' }}>
                                     {{ $i }} 枚
                                 </option>
                             @endfor
                         </select>
                     </div>
-                @endforeach
-            @else
-                @php $qty = $reservation->details->first()->quantity ?? 1; @endphp
-                <div style="margin-bottom: 10px;">
-                    <label>枚数: </label>
-                    <select name="default_quantity">
-                        @for($i = 1; $i <= $maxLimit; $i++)
-                            <option value="{{ $i }}" {{ old('default_quantity', $qty) == $i ? 'selected' : '' }}>
-                                {{ $i }} 枚
-                            </option>
-                        @endfor
-                    </select>
-                </div>
-            @endif
+                @endif
+        @endif
 
             <h3>お客様情報の変更</h3>
             <div style="margin-bottom: 10px;">

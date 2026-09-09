@@ -17,6 +17,10 @@ class Schedule extends Model
         'capacity',
     ];
 
+    protected $casts = [
+        'start_at' => 'datetime',
+    ];
+
     public function performance()
     {
         return $this->belongsTo(Performance::class);
