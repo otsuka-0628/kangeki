@@ -30,8 +30,30 @@
             <select name="performance_schedule_id" required>
                 <option value="">-- 日時を選択してください --</option>
                 @foreach($performance->schedules as $schedule)
-                    <option value="{{ $schedule->id }}" {{ old('performance_schedule_id') == $schedule->id ? 'selected' : '' }}>
+                    @php
+
+                        $reservedCount = $schedule->reservations
+                            ->where('status', '!=', 'cancelled')
+                            ->flatMap->details
+                            ->sum('quantity');
+
+                        $remainingSeats = $schedule->capacity - $reservedCount;
+
+                        $isSoldOut = $remainingSeats <= 0;
+                    @endphp
+
+                    <option value="{{ $schedule->id }}" {{ $isSoldOut ? 'disabled' : '' }} {{ old('performance_schedule_id') == $schedule->id ? 'selected' : '' }}>
+
                         {{ \Carbon\Carbon::parse($schedule->start_at)->format('Y/m/d H:i') }}
+
+                        @if($isSoldOut)
+                            【完売】
+                        @elseif($remainingSeats <= 5)
+                            （残りわずか：あと{{ $remainingSeats }}席）
+                        @else
+                            （残席あり）
+                        @endif
+
                     </option>
                 @endforeach
             </select>

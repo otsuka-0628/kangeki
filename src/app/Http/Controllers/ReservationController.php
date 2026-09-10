@@ -19,7 +19,7 @@ class ReservationController extends Controller
 
         $performance = Performance::where('form_url_slug', $slug)
             ->where('is_published', true)
-            ->with(['troupe', 'schedules', 'ticketTypes'])
+            ->with(['troupe', 'schedules.reservations.details', 'ticketTypes'])
             ->firstOrFail();
 
         return view('reservations.create', compact('performance'));
@@ -58,6 +58,33 @@ class ReservationController extends Controller
 
         if ($totalQuantity > $maxLimit) {
             return back()->withErrors(['tickets' => "お一人様最大 {$maxLimit} 枚までしか予約できません。"])->withInput();
+        }
+
+
+        $schedule = PerformanceSchedule::with('reservations.details')
+            ->where('performance_id', $performance->id)
+            ->findOrFail($validated['performance_schedule_id']);
+
+        // ① 受付期限チェック
+        $endAt = $performance->end_of_reservation_at;
+        if ($endAt && \Carbon\Carbon::now()->greaterThan($endAt)) {
+            return back()->withErrors(['performance_schedule_id' => '大変申し訳ありません。この公演の予約受付期間は終了いたしました。'])->withInput();
+        }
+
+        // ② 残席数チェック
+        $reservedCount = $schedule->reservations
+            ->where('status', '!=', 'cancelled')
+            ->flatMap->details
+            ->sum('quantity');
+
+        $remainingSeats = $schedule->capacity - $reservedCount;
+
+        if ($totalQuantity > $remainingSeats) {
+            $errorMsg = $remainingSeats <= 0
+                ? '申し訳ありません。ご希望の回はすでに満席となっております。'
+                : "申し訳ありません。ご希望の回は残り {$remainingSeats} 席のため、選択された枚数を予約できません。";
+
+            return back()->withErrors(['performance_schedule_id' => $errorMsg])->withInput();
         }
 
 
