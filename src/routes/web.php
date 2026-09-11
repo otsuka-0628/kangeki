@@ -10,6 +10,7 @@ use App\Http\Controllers\TroupeController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\controllers\AccountController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -74,6 +75,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
 
     Route::put('/account', [AccountController::class, 'update'])->name('account.update');
+
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+
+        Route::get('/reservations', [AdminReservationController::class, 'index'])->name('reservations.index');
+
+        Route::patch('/reservations/{id}/cancel', [AdminReservationController::class, 'cancel'])->name('reservations.cancel');
+    });
 
 });
 

@@ -8,6 +8,7 @@
 @import './troupe.css';
 @import './home.css';
 @import './detail.css';
+@import './admin-index';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
