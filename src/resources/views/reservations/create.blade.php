@@ -11,6 +11,7 @@
         <h1>{{ $performance->title }}</h1>
         <p>主催：{{ $performance->troupe->name }}</p>
         <!-- <p>会場：{{ $performance->venue_prefecture }}{{ $performance->venue_city }}</p> -->
+        <p>注意事項：{{ $performance->notes }}</p>
 
         @if($errors->any())
             <div style="color: red;">
