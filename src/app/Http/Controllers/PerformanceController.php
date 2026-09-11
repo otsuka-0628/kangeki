@@ -98,23 +98,63 @@ class PerformanceController extends Controller
             'end_of_reservation_at' => 'required|date',
             'notes' => 'nullable|array',
             'schedules' => 'nullable|array',
+            'schedules.*.id' => 'nullable|exists:performance_schedules,id',
             'schedules.*.start_at' => 'nullable|date',
+            'schedules.*.capacity' => 'nullable|integer|min:0',
+            'tickets' => 'nullable|array',
+            'tickets.*.id' => 'nullable|exists:ticket_types,id',
+            'tickets.*.name' => 'nullable|string|max:255',
+            'tickets.*.price' => 'nullable|integer|min:0',
         ]);
 
         $performance = Performance::findOrFail($id);
 
-        $schedulesData = $validated['schedulas'] ?? [];
-        unset($validated['schedules']);
+        $schedulesData = $validated['schedules'] ?? [];
+        $ticketsData = $validated['tickets'] ?? [];
+        unset($validated['schedules'], $validated['tickets']);
 
         $performance->update($validated);
 
         if (!empty($schedulesData)) {
-            foreach ($schedulesData as $schedule) {
-                if (!empty($schedule['start_at'])) {
-                    $performance->schedules()->create([
-                        'start_at' => $schedule['start_at'],
-                        'capacity' => $schedule['capacity'] ?? 0,
-                    ]);
+            foreach ($schedulesData as $scheduleData) {
+                if (!empty($scheduleData['id'])) {
+                    $schedule = \App\Models\Schedule::find($scheduleData['id']);
+                    if ($schedule) {
+                        $schedule->update([
+                            'capacity' => $scheduleData['capacity'] ?? $schedule->capacity,
+                            'start_at' => $scheduleData['start_at'] ?? $schedule->start_at,
+                        ]);
+                    }
+                } else {
+
+                    if (!empty($scheduleData['start_at'])) {
+                        $performance->schedules()->create([
+                            'start_at' => $scheduleData['start_at'],
+                            'capacity' => $scheduleData['capacity'] ?? 0,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        if (!empty($ticketsData)) {
+            foreach ($ticketsData as $ticketData) {
+                if (!empty($ticketData['name'])) {
+                    if (!empty($ticketData['id'])) {
+
+                        $ticket = \App\Models\TicketType::find($ticketData['id']);
+                        if ($ticket) {
+                            $ticket->update([
+                                'name' => $ticketData['name'],
+                                'price' => $ticketData['price'] ?? $ticket->price,
+                            ]);
+                        }
+                    } else {
+                        $performance->ticketTypes()->create([
+                            'name' => $ticketData['name'],
+                            'price' => $ticketData['price'] ?? 0,
+                        ]);
+                    }
                 }
             }
         }

@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Mail\ReservationConfirmed;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Schedule;
 
 class ReservationController extends Controller
 {
@@ -61,7 +62,7 @@ class ReservationController extends Controller
         }
 
 
-        $schedule = PerformanceSchedule::with('reservations.details')
+        $schedule = Schedule::with('reservations.details')
             ->where('performance_id', $performance->id)
             ->findOrFail($validated['performance_schedule_id']);
 
@@ -90,37 +91,60 @@ class ReservationController extends Controller
 
         $reservation = null;
 
-        DB::transaction(function () use ($validated, $request, $hasTicketTypes, &$reservation) {
+        try {
+            DB::transaction(function () use ($validated, $request, $hasTicketTypes, $performance, $totalQuantity, &$reservation) {
 
-            $reservation = Reservation::create([
-                'performance_schedule_id' => $validated['performance_schedule_id'],
-                'reservation_token' => Str::random(64),
-                'customer_name' => $validated['customer_name'],
-                'customer_email' => $validated['customer_email'],
-                'customer_phone' => $validated['customer_phone'] ?? null,
-                'notes' => $validated['notes'] ?? null,
-                'status' => 'reserved',
-                'is_checked_in' => false,
-            ]);
+                $schedule = Schedule::with('reservations.details')
+                    ->where('performance_id', $performance->id)
+                    ->lockForUpdate()
+                    ->findOrFail($validated['performance_schedule_id']);
 
-            if ($hasTicketTypes) {
-                foreach ($request->input('tickets', []) as $ticketTypeId => $quantity) {
-                    if ($quantity > 0) {
-                        ReservationDetail::create([
-                            'reservation_id' => $reservation->id,
-                            'ticket_type_id' => $ticketTypeId,
-                            'quantity' => $quantity,
-                        ]);
-                    }
+                $reservedCount = $schedule->reservations
+                    ->where('status', '!=', 'cancelled')
+                    ->flatMap->details
+                    ->sum('quantity');
+
+                $remainingSeats = $schedule->capacity - $reservedCount;
+
+                if ($totalQuantity > $remainingSeats) {
+                    throw new \Exception('SOLDOUT_ERROR');
                 }
-            } else {
-                ReservationDetail::create([
-                    'reservation_id' => $reservation->id,
-                    'ticket_type_id' => null,
-                    'quantity' => (int) $request->input('default_quantity'),
+
+                $reservation = Reservation::create([
+                    'performance_schedule_id' => $validated['performance_schedule_id'],
+                    'reservation_token' => Str::random(64),
+                    'customer_name' => $validated['customer_name'],
+                    'customer_email' => $validated['customer_email'],
+                    'customer_phone' => $validated['customer_phone'] ?? null,
+                    'notes' => $validated['notes'] ?? null,
+                    'status' => 'reserved',
+                    'is_checked_in' => false,
                 ]);
+
+                if ($hasTicketTypes) {
+                    foreach ($request->input('tickets', []) as $ticketTypeId => $quantity) {
+                        if ($quantity > 0) {
+                            ReservationDetail::create([
+                                'reservation_id' => $reservation->id,
+                                'ticket_type_id' => $ticketTypeId,
+                                'quantity' => $quantity,
+                            ]);
+                        }
+                    }
+                } else {
+                    ReservationDetail::create([
+                        'reservation_id' => $reservation->id,
+                        'ticket_type_id' => null,
+                        'quantity' => (int) $request->input('default_quantity'),
+                    ]);
+                }
+            });
+        } catch (\Exception $e) {
+            if ($e->getMessage() === 'SOLDOUT_ERROR') {
+                return back()->withErrors(['performance_schedule_id' => '申し訳ありません。タッチの差で満席となったため予約を完了できませんでした。'])->withInput();
             }
-        });
+            throw $e;
+        }
 
         if ($reservation) {
             Mail::to($reservation->customer_email)->send(new ReservationConfirmed($reservation));
