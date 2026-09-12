@@ -82,6 +82,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/reservations', [AdminReservationController::class, 'index'])->name('reservations.index');
 
         Route::patch('/reservations/{id}/cancel', [AdminReservationController::class, 'cancel'])->name('reservations.cancel');
+
+        Route::put('/reservations/{id}', [AdminReservationController::class, 'update'])->name('reservations.update');
     });
 
 });

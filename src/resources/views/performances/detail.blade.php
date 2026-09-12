@@ -26,7 +26,7 @@
                         URLをコピー
                     </button>
 
-                    <a href="{{ route('admin.reservations.index', ['schedule_id' => $performance->schedules->first()->id ?? '']) }}"
+                    <a href="{{ route('admin.reservations.index', ['performance_id' => $performance->id]) }}"
                         class="detail-btn detail-btn-action">予約一覧・管理</a>
                     <a href="#" class="detail-btn detail-btn-action">予約者名簿抽出</a>
                     <a href="{{ route('performances.edit', $performance->id) }}"

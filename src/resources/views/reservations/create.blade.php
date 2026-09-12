@@ -8,6 +8,7 @@
 
 <body>
     <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <p>{{ $performance->sub_title }}</p>
         <h1>{{ $performance->title }}</h1>
         <p>主催：{{ $performance->troupe->name }}</p>
         <!-- <p>会場：{{ $performance->venue_prefecture }}{{ $performance->venue_city }}</p> -->
