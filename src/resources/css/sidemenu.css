@@ -23,3 +23,8 @@
     padding-left: 12px;
     gap: 15px;
 }
+
+.sidebar a {
+    color: white !important;
+    text-decoration: none;
+}

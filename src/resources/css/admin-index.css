@@ -34,11 +34,11 @@
 }
 
 .admin-index-table th:nth-child(7) {
-    width: 90px;
+    width: 120px;
 }
 
 .admin-index-table th:nth-child(8) {
-    width: 140px
+    width: 120px
 }
 
 .admin-index-table th {
