@@ -81,6 +81,7 @@
                         <div id="seat-container">
                             @forelse($performance->schedules as $index => $schedule)
                                 <div class="seat-item dynamic-item" data-index="{{ $index }}">
+                                    <input type="hidden" name="schedules[{{ $index }}][id]" value="{{ $schedule->id }}">
                                     <label class="seat-label sub-label">【開演日時 {{ $index + 1 }}】</label>
                                     <input type="number" name="schedules[{{ $index }}][capacity]"
                                         value="{{ old("schedules.{$index}.capacity", $schedule->capacity) }}"
@@ -105,6 +106,7 @@
                         <div id="ticket-type-container">
                             @forelse($performance->ticketTypes as $index => $ticket)
                                 <div class="ticket-type-item dynamic-item" data-index="{{ $index }}">
+                                    <input type="hidden" name="tickets[{{ $index }}][id]" value="{{ $ticket->id }}">
                                     <input type="text" class="ticket-type-input form-control"
                                         name="tickets[{{ $index }}][name]"
                                         value="{{ old("tickets.{$index}.name", $ticket->name) }}"

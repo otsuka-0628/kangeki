@@ -1,0 +1,79 @@
+.admin-notes {
+    font-size: 14px;
+    color: red;
+    padding-bottom: 10px;
+}
+
+.admin-index-table {
+    width: 80vw;
+    table-layout: fixed;
+}
+
+.admin-index-table th:nth-child(1) {
+    width: 140px;
+}
+
+.admin-index-table th:nth-child(2) {
+    width: 110px;
+}
+
+.admin-index-table th:nth-child(3) {
+    width: 180px;
+}
+
+.admin-index-table th:nth-child(4) {
+    width: 120px;
+}
+
+.admin-index-table th:nth-child(5) {
+    width: 120px;
+}
+
+.admin-index-table th:nth-child(6) {
+    width: auto;
+}
+
+.admin-index-table th:nth-child(7) {
+    width: 90px;
+}
+
+.admin-index-table th:nth-child(8) {
+    width: 140px
+}
+
+.admin-index-table th {
+    background-color: white;
+    border: solid 2px white;
+    padding: 5px 0px;
+}
+
+.admin-index-table td {
+    border: solid 2px white;
+    padding: 5px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.admin-index-table td:nth-child(6) {
+    text-align: left;
+}
+
+.btn-cancel {
+    border: solid 1px rgb(100, 100, 100);
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 12px;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+
+.btn-detail {
+    border: solid 1px rgb(100, 100, 100);
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 12px;
+    background-color: #f8f9fa;
+    margin-right: 4px;
+}
