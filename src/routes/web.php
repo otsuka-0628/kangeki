@@ -11,6 +11,8 @@ use App\Http\Controllers\PerformanceController;
 use App\Http\controllers\AccountController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
+use App\Http\Controllers\System\DashboardController as SystemDashboardController;
+use App\Http\Middleware\SystemAdminMiddleware;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -41,6 +43,8 @@ Route::post('/password/update', [ResetPasswordController::class, 'update'])->nam
 Route::get('/user-register', [RegisterController::class, 'showRegisterForm'])->name('user-register');
 
 Route::post('/user-register', [RegisterController::class, 'register']);
+
+
 
 Route::middleware(['auth'])->group(function () {
 
@@ -84,6 +88,12 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/reservations/{id}/cancel', [AdminReservationController::class, 'cancel'])->name('reservations.cancel');
 
         Route::put('/reservations/{id}', [AdminReservationController::class, 'update'])->name('reservations.update');
+    });
+
+
+
+    Route::middleware([SystemAdminMiddleware::class])->group(function () {
+        Route::get('/system/dashboard', [SystemDashboardController::class, 'index'])->name('system.dashboard');
     });
 
 });
