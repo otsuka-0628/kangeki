@@ -57,5 +57,8 @@ git status
 
 php artisan make:controller ForgotPasswordController
 
-git checkout main
-git pull origin main
+git checkout main メインブランチへ移動
+※新しいブランチで作業を始めるときはGithubで完了させた一番新しい状態のmainから分岐させる必要があるため
+git pull origin main　Github上のmainの最新状態を自分のPCに反映させる
+※これをやらずに古いmainから新しいブランチを作ると、直前でマージした他ブランチの作業が含まれていない状態になる
+git checkout -b feature/system（ブランチ名）　最新になったmainから新しいブランチを作り移動する
