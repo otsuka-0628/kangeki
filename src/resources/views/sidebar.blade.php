@@ -8,4 +8,9 @@
         <li><a href='#'>お問い合わせ</a></li>
         <li><a href='#'>退会</a></li>
     </ul>
+
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn-logout">ログアウト</button>
+    </form>
 </nav>

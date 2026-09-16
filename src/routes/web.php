@@ -81,6 +81,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/account', [AccountController::class, 'update'])->name('account.update');
 
 
+
+
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
     Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/reservations', [AdminReservationController::class, 'index'])->name('reservations.index');

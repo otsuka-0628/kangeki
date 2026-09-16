@@ -43,4 +43,19 @@ class LoginController extends Controller
             'login_error' => 'メールアドレスまたはパスワードが間違っています。'
         ])->withInput($request->only('userID'));
     }
+
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+
+        $request->session()->invalidate();
+
+
+        $request->session()->regenerateToken();
+
+
+        return redirect('/user-login')->with('success', 'ログアウトしました。');
+    }
 }
