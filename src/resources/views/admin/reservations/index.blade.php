@@ -31,6 +31,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <form method="GET" action="{{ route('admin.reservations.index') }}" class="row g-3">
+                            <input type="hidden" name="performance_id" value="{{ request('performance_id') }}">
 
                             <!-- 回（公演日時） -->
                             <div class="col-md-3">
