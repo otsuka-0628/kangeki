@@ -18,19 +18,47 @@ class ReservationController extends Controller
         $query = Reservation::with(['schedule.performance', 'details.ticketType'])
             ->orderBy('created_at', 'desc');
 
-        if ($request->has('performance_id') && $request->performance_id != '') {
+        if ($request->filled('performance_id')) {
             $query->whereHas('schedule', function ($q) use ($request) {
                 $q->where('performance_id', $request->performance_id);
             });
         }
 
-        if ($request->has('schedule_id') && $request->schedule_id != '') {
+        if ($request->filled('schedule_id')) {
             $query->where('performance_schedule_id', $request->schedule_id);
         }
 
-        $reservations = $query->paginate(20);
+        if ($request->filled('ticket_type_id')) {
+            $query->whereHas('details', function ($q) use ($request) {
+                $q->where('ticket_type_id', $request->ticket_type_id);
+            });
+        }
 
-        return view('admin.reservations.index', compact('reservations'));
+        if ($request->filled('keyword')) {
+            $keyword = '%' . $request->keyword . '%';
+            $query->where(function ($q) use ($keyword) {
+                $q->where('customer_name', 'like', $keyword)
+                    ->orWhere('customer_phone', 'like', $keyword);
+            });
+        }
+
+        $reservations = $query->paginate(20)->withQueryString();
+
+        $performances = Performance::all();
+
+        $schedules = collect();
+        $ticketTypes = collect();
+
+        if ($request->filled('performance_id')) {
+            $schedules = \App\Models\Schedule::where('performance_id', $request->performance_id)
+                ->orderBy('start_at', 'asc')
+                ->get();
+
+            $ticketTypes = \App\Models\TicketType::where('performance_id', $request->performance_id)->get();
+        }
+
+
+        return view('admin.reservations.index', compact('reservations', 'performances', 'schedules', 'ticketTypes'));
     }
 
 

@@ -26,6 +26,62 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
+            <div class="serch-box mb-4">
+                <!-- 検索フォーム -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form method="GET" action="{{ route('admin.reservations.index') }}" class="row g-3">
+                            <input type="hidden" name="performance_id" value="{{ request('performance_id') }}">
+
+                            <!-- 回（公演日時） -->
+                            <div class="col-md-3">
+                                <label for="schedule_id" class="form-label font-weight-bold">公演日時</label>
+                                <select name="schedule_id" id="schedule_id" class="form-select">
+                                    <option value="">すべての回</option>
+                                    @foreach($schedules as $schedule)
+                                        <option value="{{ $schedule->id }}" {{ request('schedule_id') == $schedule->id ? 'selected' : '' }}>
+                                            {{ $schedule->start_at ? $schedule->start_at->format('Y/m/d H:i') : '未設定' }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- チケット種類 -->
+                            <div class="col-md-3">
+                                <label for="ticket_type_id" class="form-label font-weight-bold">チケット種類</label>
+                                <select name="ticket_type_id" id="ticket_type_id" class="form-select">
+                                    <option value="">すべての券種</option>
+                                    @foreach($ticketTypes as $type)
+                                        <option value="{{ $type->id }}" {{ request('ticket_type_id') == $type->id ? 'selected' : '' }}>
+                                            {{ $type->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- お名前 / 電話番号 検索 -->
+                            <div class="col-md-4">
+                                <label for="keyword" class="form-label font-weight-bold">キーワード（名前・電話）</label>
+                                <input type="text" name="keyword" id="keyword" class="form-control"
+                                    value="{{ request('keyword') }}" placeholder="山田太郎 または 090...">
+                            </div>
+
+                            <!-- ボタン類 -->
+                            <div class="col-md-2 d-flex align-items-end gap-2">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="bi bi-search"></i> 検索
+                                </button>
+                                <a href="{{ route('admin.reservations.index') }}" class="btn btn-outline-secondary"
+                                    title="クリア">
+                                    クリア
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <table class="admin-index-table">
                 <thead>
                     <tr>
