@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\ReservationDetail;
 use App\Models\PerformanceSchedule;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use App\Models\Performance;
 
 class ReservationController extends Controller
 {
@@ -100,5 +102,78 @@ class ReservationController extends Controller
         });
 
         return back()->with('success', '予約内容を変更しました。');
+    }
+
+
+    public function export(Request $request, Performance $performance): StreamedResponse
+    {
+
+        $query = Reservation::with(['schedule', 'details.ticketType'])
+            ->join('performance_schedules', 'reservations.performance_schedule_id', '=', 'performance_schedules.id')->where('performance_schedules.performance_id', $performance->id)
+            ->orderBy('performance_schedules.start_at', 'asc')
+            ->orderBy('reservations.created_at', 'asc')
+            ->select('reservations.*');
+
+
+        if ($request->filled('schedule_id')) {
+            $query->where('reservations.performance_schedules_id', $request->schedule_id);
+        }
+
+        $reservations = $query->get();
+
+
+        $title = str_replace(['/', '\\', ' ', ' '], '_', $performance->title ?? 'performance');
+
+        $fileName = '予約リスト_' . $title . '_' . date('Ymd_His') . '.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => "attachment; filename=\"{$fileName}\"",
+        ];
+
+        $callback = function () use ($reservations) {
+            $stream = fopen('php://output', 'w');
+
+
+            fwrite($stream, "\xEF\xBB\xBF");
+
+
+            fputcsv($stream, ['予約ID', 'ステータス', '公演日時', 'お名前', 'メールアドレス', '電話番号', 'チケット内訳', '合計枚数', '合計金額', '備考']);
+
+
+            foreach ($reservations as $r) {
+
+                $ticketDetails = $r->details->map(function ($d) {
+                    return ($d->ticketType->name ?? 'チケット') . '×' . $d->quantity . '枚';
+                })->implode(' / ');
+
+                $totalAmount = $r->details->sum(function ($d) {
+                    return $d->quantity * ($d->ticketType->price ?? 0);
+                });
+
+                $statusText = match ($r->status) {
+                    'cancelled' => 'キャンセル済み',
+                    'reserved' => '予約完了',
+                    default => $r->status,
+                };
+
+                fputcsv($stream, [
+                    $r->id,
+                    $statusText,
+                    $r->schedule->start_at ? $r->schedule->start_at->format('Y/m/d H:i') : '',
+                    $r->customer_name,
+                    $r->customer_email,
+                    $r->customer_phone ?? '',
+                    $ticketDetails,
+                    $r->details->sum('quantity') . '枚',
+                    number_format($totalAmount) . '円',
+                    $r->notes ?? '',
+                ]);
+            }
+
+            fclose($stream);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }

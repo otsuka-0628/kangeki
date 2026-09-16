@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ReservationController as AdminReservationControll
 use App\Http\Controllers\System\DashboardController as SystemDashboardController;
 use App\Http\Middleware\SystemAdminMiddleware;
 
+
 Route::get('/', function () {
     return view('auth.register-top');
 });
@@ -94,6 +95,9 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/reservations/{id}/cancel', [AdminReservationController::class, 'cancel'])->name('reservations.cancel');
 
         Route::put('/reservations/{id}', [AdminReservationController::class, 'update'])->name('reservations.update');
+
+
+        Route::get('/performances/{performance}/reservations/export', [AdminReservationController::class, 'export'])->name('reservations.export');
     });
 
 
