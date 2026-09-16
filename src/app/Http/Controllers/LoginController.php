@@ -26,6 +26,13 @@ class LoginController extends Controller
 
         if (Auth::attempt($loginDate)) {
             $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+                return redirect()->route('system.dashboard')->with('success', '管理者としてログインしました。');
+            }
+
             return redirect('home')->with(
                 'success',
                 'ログインしました。'
@@ -35,5 +42,20 @@ class LoginController extends Controller
         return back()->withErrors([
             'login_error' => 'メールアドレスまたはパスワードが間違っています。'
         ])->withInput($request->only('userID'));
+    }
+
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+
+        $request->session()->invalidate();
+
+
+        $request->session()->regenerateToken();
+
+
+        return redirect('/user-login')->with('success', 'ログアウトしました。');
     }
 }

@@ -28,7 +28,8 @@
 
                     <a href="{{ route('admin.reservations.index', ['performance_id' => $performance->id]) }}"
                         class="detail-btn detail-btn-action">予約一覧・管理</a>
-                    <a href="#" class="detail-btn detail-btn-action">予約者名簿抽出</a>
+                    <a href="{{ route('admin.reservations.export', ['performance' => $performance->id]) }}"
+                        class="detail-btn detail-btn-action"><i class="bi bi-file-earmark-excel"></i> Excel(CSV)出力</a>
                     <a href="{{ route('performances.edit', $performance->id) }}"
                         class="detail-btn detail-btn-action">編集</a>
                     <form action="{{ route('performances.destroy', $performance->id) }}" method="POST"
