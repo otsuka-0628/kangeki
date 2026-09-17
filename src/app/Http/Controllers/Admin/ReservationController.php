@@ -50,7 +50,13 @@ class ReservationController extends Controller
         $ticketTypes = collect();
 
         if ($request->filled('performance_id')) {
-            $schedules = \App\Models\Schedule::where('performance_id', $request->performance_id)
+            $schedules = \App\Models\Schedule::where('performance_id', $request->performance_id)->withSum([
+                'reservationDetails as reserved_count' => function ($q) {
+                    $q->whereHas('reservation', function ($rq) {
+                        $rq->where('status', '!=', 'cancelled');
+                    });
+                }
+            ], 'quantity')
                 ->orderBy('start_at', 'asc')
                 ->get();
 

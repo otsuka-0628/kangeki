@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Schedule extends Model
 {
@@ -30,5 +31,16 @@ class Schedule extends Model
     public function reservations(): HasMany
     {
         return $this->hasMany(Reservation::class, 'performance_schedule_id');
+    }
+
+
+    public function reservationDetails(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            ReservationDetail::class,
+            Reservation::class,
+            'performance_schedule_id', // Reservation テーブルの外部キー
+            'reservation_id' // ReservationDetail テーブルの外部キー
+        );
     }
 }
