@@ -42,6 +42,10 @@ class ReservationController extends Controller
             });
         }
 
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
         $reservations = $query->paginate(20)->withQueryString();
 
         $performances = Performance::all();
@@ -65,6 +69,8 @@ class ReservationController extends Controller
 
 
         return view('admin.reservations.index', compact('reservations', 'performances', 'schedules', 'ticketTypes'));
+
+
     }
 
 
