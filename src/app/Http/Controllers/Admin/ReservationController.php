@@ -42,6 +42,10 @@ class ReservationController extends Controller
             });
         }
 
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
         $reservations = $query->paginate(20)->withQueryString();
 
         $performances = Performance::all();
@@ -50,7 +54,13 @@ class ReservationController extends Controller
         $ticketTypes = collect();
 
         if ($request->filled('performance_id')) {
-            $schedules = \App\Models\Schedule::where('performance_id', $request->performance_id)
+            $schedules = \App\Models\Schedule::where('performance_id', $request->performance_id)->withSum([
+                'reservationDetails as reserved_count' => function ($q) {
+                    $q->whereHas('reservation', function ($rq) {
+                        $rq->where('status', '!=', 'cancelled');
+                    });
+                }
+            ], 'quantity')
                 ->orderBy('start_at', 'asc')
                 ->get();
 
@@ -59,6 +69,8 @@ class ReservationController extends Controller
 
 
         return view('admin.reservations.index', compact('reservations', 'performances', 'schedules', 'ticketTypes'));
+
+
     }
 
 

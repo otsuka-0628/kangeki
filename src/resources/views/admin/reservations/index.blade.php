@@ -18,7 +18,6 @@
     <div class="dashboard-layout">
         @include('sidebar')
 
-
         <div class="main-contents">
             <h2>予約一覧・管理</h2>
             <p class="admin-notes">※二重予約などのトラブル防止のため回（日時）の変更はできません。お客様自身でキャンセルの上、希望公演日時での再予約をするようにお願いしてください。</p>
@@ -26,14 +25,59 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <div class="serch-box mb-4">
-                <!-- 検索フォーム -->
+
+            @if($schedules->isNotEmpty())
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body bg-light rounded">
+                        <h5 class="h6 font-weight-bold mb-3 text-secondary">
+                            <i class="bi bi-ticket-perforated"></i> 各回の残り座席状況
+                        </h5>
+                        <div class="row g-2">
+                            @foreach($schedules as $schedule)
+                                @php                                    
+                                    $remaining = $schedule->capacity - ($schedule->reserved_count ?? 0);
+                                @endphp
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="p-2 bg-white rounded border text-center h-100">
+                                        <div class="small fw-bold text-dark">
+                                            {{ $schedule->start_at ? $schedule->start_at->format('m/d H:i') : '未設定' }}
+                                        </div>
+                                        <div class="mt-1">
+                                            @if($remaining <= 0)
+                                                <span class="badge bg-danger">満席 (0/{{ $schedule->capacity }})</span>
+                                            @elseif($remaining <= 5)
+                                                <span class="badge bg-warning text-dark">残りわずか
+                                                    ({{ $remaining }}/{{ $schedule->capacity }}席)</span>
+                                            @else
+                                                <span class="badge bg-success">残
+                                                    {{ $remaining }}&nbsp;/&nbsp;{{ $schedule->capacity }} 席</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            <div class="search-box mb-4">
                 <div class="card mb-4">
                     <div class="card-body">
                         <form method="GET" action="{{ route('admin.reservations.index') }}" class="row g-3">
                             <input type="hidden" name="performance_id" value="{{ request('performance_id') }}">
 
-                            <!-- 回（公演日時） -->
+                            <div class="col-md-2">
+                                <label for="status" class="form-label font-weight-bold">ステータス</label>
+                                <select name="status" id="status" class="form-select">
+                                    <option value="">すべて</option>
+                                    <option value="reserved" {{ request('status') == 'reserved' ? 'selected' : '' }}>予約完了
+                                    </option>
+                                    <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>
+                                        キャンセル済</option>
+                                </select>
+                            </div>
+
                             <div class="col-md-3">
                                 <label for="schedule_id" class="form-label font-weight-bold">公演日時</label>
                                 <select name="schedule_id" id="schedule_id" class="form-select">
@@ -46,7 +90,7 @@
                                 </select>
                             </div>
 
-                            <!-- チケット種類 -->
+
                             <div class="col-md-3">
                                 <label for="ticket_type_id" class="form-label font-weight-bold">チケット種類</label>
                                 <select name="ticket_type_id" id="ticket_type_id" class="form-select">
@@ -59,14 +103,16 @@
                                 </select>
                             </div>
 
-                            <!-- お名前 / 電話番号 検索 -->
                             <div class="col-md-4">
                                 <label for="keyword" class="form-label font-weight-bold">キーワード（名前・電話）</label>
                                 <input type="text" name="keyword" id="keyword" class="form-control"
                                     value="{{ request('keyword') }}" placeholder="山田太郎 または 090...">
                             </div>
 
-                            <!-- ボタン類 -->
+
+
+
+
                             <div class="col-md-2 d-flex align-items-end gap-2">
                                 <button type="submit" class="btn btn-primary w-100">
                                     <i class="bi bi-search"></i> 検索
@@ -76,7 +122,6 @@
                                     クリア
                                 </a>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -214,6 +259,7 @@
                 @endif
             @endforeach
         </div>
+    </div>
 
 </body>
 
