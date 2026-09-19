@@ -13,6 +13,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 use App\Http\Controllers\System\DashboardController as SystemDashboardController;
 use App\Http\Middleware\SystemAdminMiddleware;
+use App\Http\Controllers\WithdrawalController;
 
 
 Route::get('/', function () {
@@ -82,10 +83,16 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/account', [AccountController::class, 'update'])->name('account.update');
 
 
-
-
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
+    Route::middleware(['auth'])->group(function () {
+
+        Route::get('/withdrawal', [WithdrawalController::class, 'confirm'])->name('withdrawal.confirm');
+
+        Route::delete('/withdrawal', [WithdrawalController::class, 'destroy'])->name('withdrawal.destroy');
+
+    });
 
 
     Route::prefix('admin')->name('admin.')->group(function () {
