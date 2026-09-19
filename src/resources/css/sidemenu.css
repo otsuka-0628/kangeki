@@ -31,6 +31,11 @@
 
 .btn-logout {
     padding-left: 12px;
-    margin-top: 90px;
+    margin-top: 15px;
     cursor: pointer;
+}
+
+.btn-account-delete {
+    padding-left: 12px;
+    margin-top: 90px;
 }

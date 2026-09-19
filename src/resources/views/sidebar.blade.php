@@ -6,11 +6,15 @@
         <li><a href="{{ route('performances.create') }}">公演情報登録</a></li>
         <li><a href='{{ route('account.show') }}'>アカウント情報</a></li>
         <li><a href='#'>お問い合わせ</a></li>
-        <li><a href='#'>退会</a></li>
     </ul>
-
     <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button type="submit" class="btn-logout">ログアウト</button>
     </form>
+
+    <div class="btn-account-delete">
+        <a href="{{ route('withdrawal.confirm') }}">退会手続き
+
+        </a>
+    </div>
 </nav>
