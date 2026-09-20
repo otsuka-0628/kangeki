@@ -18,8 +18,14 @@
             <h2>予約受付中の公演</h2>
 
             @if (session('success'))
-                <div style="color: red; padding: 10px; margin-bottom: 15px; text-align: center;">
+                <div class="alert-message">
                     {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('message'))
+                <div class="alert-message">
+                    {{ session('message') }}
                 </div>
             @endif
 

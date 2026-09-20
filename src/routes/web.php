@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ReservationController as AdminReservationControll
 use App\Http\Controllers\System\DashboardController as SystemDashboardController;
 use App\Http\Middleware\SystemAdminMiddleware;
 use App\Http\Controllers\WithdrawalController;
+use App\Http\Controllers\RestoreController;
 
 
 Route::get('/', function () {
@@ -45,6 +46,11 @@ Route::post('/password/update', [ResetPasswordController::class, 'update'])->nam
 Route::get('/user-register', [RegisterController::class, 'showRegisterForm'])->name('user-register');
 
 Route::post('/user-register', [RegisterController::class, 'register']);
+
+
+Route::get('/restore/confirm', [RestoreController::class, 'showConfirmForm'])->name('restore.confirm');
+
+Route::post('/restore', [RestoreController::class, 'restore'])->name('restore.perform');
 
 
 
