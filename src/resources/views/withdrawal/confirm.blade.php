@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container py-5" style="background-image: url('{{ asset('images/rt-background.jpg') }}')">
+    <div class="withdrawal-bg" style="background-image: url('{{ asset('images/withdrawal-background.jpg') }}')">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card border-danger shadow-sm">
