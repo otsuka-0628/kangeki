@@ -1,0 +1,36 @@
+.restore-logo {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15%;
+    margin-bottom: 15%;
+}
+
+.restore-text {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    color: rgb(196, 26, 48);
+}
+
+.restore-actions {
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    gap: 20px;
+}
+
+.btn-restore-confirm {
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.btn-restore-confirm.restore-btn {
+    color: black;
+    border: solid 1px black;
+}
+
+.btn-restore-confirm.cancel-btn {
+    background-color: black;
+    color: white;
+}
