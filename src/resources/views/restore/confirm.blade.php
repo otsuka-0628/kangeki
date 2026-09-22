@@ -14,26 +14,30 @@
     <div class="lr-bg" style="background-image: url('{{ asset('images/lr-background.jpg') }}')">
         <section class=login-form>
             <div class="form-root">
-                <img class="login-logo" src="images/logo-black.png">
+                <img class="restore-logo" src="{{ asset('images/logo-black.png') }}">
 
-                <p class="restore-alert">
-                    入力されたメールアドレス（<strong>{{ $email }}</strong>）は、過去に退会されたアカウントです。
-                </p>
-                <p>このアカウントを復旧して、過去のデータ（公演情報や設定など）を引き継いだままログインしますか？</p>
+                <div class="restore-text">
+                    <p class="restore-alert">
+                        入力されたメールアドレス（<strong>{{ $email }}</strong>）は、過去に退会されたアカウントです。
+                    </p>
+                    <p>このアカウントを復旧して、過去のデータ（公演情報や設定など）を引き継いだままログインしますか？</p>
+                </div>
 
-                <form action="{{ route('restore.perform') }}" method="POST">
+                <form action="{{ route('restore.perform') }}" method="POST" class="restore-actions">
                     @csrf
-                    <button type="submit" class="btn-restore-confirm">
+                    <button type="submit" class="btn-restore-confirm restore-btn">
                         アカウントを復旧してログイン
                     </button>
-                    <a href="{{ route('user-register') }}" class="btn-restore-confirm">
+                    <a href="{{ route('user-register') }}" class="btn-restore-confirm cancel-btn">
                         キャンセル（新規登録へ戻る）
                     </a>
-            </div>
-            </form>
+                </form>
 
-    </div>
-    </section>
+            </div>
+
+
+
+        </section>
     </div>
 </body>
 

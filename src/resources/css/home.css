@@ -67,3 +67,10 @@
     align-items: center;
     margin-top: 5vh;
 }
+
+.alert-message {
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: rgb(196, 26, 48);
+}
