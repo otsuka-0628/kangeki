@@ -46,3 +46,7 @@ body {
     background-color: #ffffff;
     color: black;
 }
+
+.withdrawal-message {
+    color: rgb(196, 26, 48, );
+}
