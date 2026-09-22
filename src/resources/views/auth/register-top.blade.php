@@ -15,6 +15,12 @@
 
         <img class="top-logo" src="images/logo-white.png">
 
+        @if (session('message'))
+            <div class="withdrawal-message">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <a href="{{ route('login') }}" class="btn btn-login">
             ログイン
         </a>
