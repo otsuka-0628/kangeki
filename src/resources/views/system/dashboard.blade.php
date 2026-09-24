@@ -5,13 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理者ページ</title>
+    @vite([
+        'resources/css/app.css'
+    ])
 </head>
 
 <body>
-    <h1>アプリ管理者専用ページ</h1>
-    <p>ようこそ、{{ Auth::user()->email }} さん（アプリ管理者）</p>
+    <div class="dashboard-layout">
+        @include('system.sidebar')
 
+        <div class="main-contents">
+            <h1>アプリ管理者専用ページ</h1>
+            <p>ようこそ、{{ Auth::user()->email }} さん（アプリ管理者）</p>
 
+        </div>
+    </div>
 </body>
 
 </html>
