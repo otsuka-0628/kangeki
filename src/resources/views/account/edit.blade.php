@@ -12,7 +12,11 @@
 
 <body>
     <div class="dashboard-layout">
-        @include('sidebar')
+        @if (Auth::user()->role === 'admin')
+            @include('system.sidebar')
+        @else
+            @include('sidebar')
+        @endif
 
         <div class="main-contents">
             <h2>アカウント情報の変更</h2>

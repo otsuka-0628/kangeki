@@ -13,7 +13,8 @@
 <body>
     <div class="dashboard-layout">
         @include('system.sidebar')
-        <div class="container">
+
+        <div class="main-contents">
             <h2>登録劇団（ユーザー）一覧</h2>
 
             {{-- フラッシュメッセージ表示 --}}
