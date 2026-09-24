@@ -29,6 +29,20 @@ class LoginController extends Controller
 
             $user = Auth::user();
 
+
+
+            if ($user->is_suspended) {
+                Auth::logout();
+
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'login_error' => 'このアカウントは利用停止されています。管理者に問い合わせてください。'
+                ])->withInput($request->only('userID'));
+            }
+
+
             if ($user->role === 'admin') {
                 return redirect()->route('system.dashboard')->with('success', '管理者としてログインしました。');
             }

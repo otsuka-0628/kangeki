@@ -15,7 +15,8 @@ use App\Http\Controllers\System\DashboardController as SystemDashboardController
 use App\Http\Middleware\SystemAdminMiddleware;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\RestoreController;
-
+use App\Http\Controllers\System\UserController as SystemUserController;
+use App\Http\Controllers\System\PerformanceController as SystemPerformanceController;
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -92,13 +93,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-    Route::middleware(['auth'])->group(function () {
 
-        Route::get('/withdrawal', [WithdrawalController::class, 'confirm'])->name('withdrawal.confirm');
+    Route::get('/withdrawal', [WithdrawalController::class, 'confirm'])->name('withdrawal.confirm');
 
-        Route::delete('/withdrawal', [WithdrawalController::class, 'destroy'])->name('withdrawal.destroy');
+    Route::delete('/withdrawal', [WithdrawalController::class, 'destroy'])->name('withdrawal.destroy');
 
-    });
+
 
 
     Route::prefix('admin')->name('admin.')->group(function () {
@@ -114,9 +114,13 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
+    Route::middleware(['auth', SystemAdminMiddleware::class])->prefix('system')->name('system.')->group(function () {
 
-    Route::middleware([SystemAdminMiddleware::class])->group(function () {
-        Route::get('/system/dashboard', [SystemDashboardController::class, 'index'])->name('system.dashboard');
+        Route::get('/dashboard', [SystemDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/users', [SystemUserController::class, 'index'])->name('users.index');
+        Route::patch('/users/{user}/toggle-block', [SystemUserController::class, 'toggleBlock'])->name('users.toggle-block');
+        Route::get('/performances', [SystemPerformanceController::class, 'index'])->name('performances.index');
+        Route::delete('/performances/{performance}', [SystemPerformanceController::class, 'destroy'])->name('performances.destroy');
     });
 
 });
