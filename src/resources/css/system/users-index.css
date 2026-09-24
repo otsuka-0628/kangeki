@@ -1,0 +1,32 @@
+.system-troupes-table {
+    width: 80vh;
+    table-layout: fixed;
+}
+
+.system-troupes-table th:nth-child(1) {
+    width: 30px
+}
+
+.system-troupes-table th:nth-child(2) {
+    width: 200px;
+}
+
+
+.system-troupes-table th:nth-child(3) {
+    width: 150px;
+}
+
+
+.system-troupes-table th:nth-child(4) {
+    width: 200px;
+}
+
+
+.system-troupes-table th:nth-child(5) {
+    width: 100px;
+}
+
+
+.system-troupes-table th:nth-child(6) {
+    width: 150px;
+}

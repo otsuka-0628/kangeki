@@ -15,18 +15,18 @@
         @include('system.sidebar')
 
         <div class="main-contents">
-            <h2>登録劇団（ユーザー）一覧</h2>
+            <h2>登録劇団一覧</h2>
 
             {{-- フラッシュメッセージ表示 --}}
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <table class="table">
+            <table class="system-troupes-table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>劇団名（ユーザー名）</th>
+                        <th>劇団名</th>
                         <th>代表者名</th>
                         <th>メールアドレス</th>
                         <th>ステータス</th>
@@ -51,10 +51,11 @@
                             <td>
                                 {{-- アカウント停止・解除の切り替えボタン --}}
                                 <form action="{{ route('system.users.toggle-block', $user) }}" method="POST"
-                                    style="display:inline;">
+                                    class="system-actions">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" onclick="return confirm('ステータスを変更しますか？')">
+                                    <button type="submit" onclick="return confirm('ステータスを変更しますか？')"
+                                        class="btn-account-stop">
                                         {{ $user->is_blocked ? '停止解除' : 'アカウント停止' }}
                                     </button>
                                 </form>
