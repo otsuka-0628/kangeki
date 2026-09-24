@@ -27,6 +27,7 @@
                     <tr>
                         <th>ID</th>
                         <th>劇団名（ユーザー名）</th>
+                        <th>代表者名</th>
                         <th>メールアドレス</th>
                         <th>ステータス</th>
                         <th>操作</th>
@@ -36,7 +37,8 @@
                     @forelse ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
-                            <td>{{ $user->troupe?->name ?: $user->name }}</td>
+                            <td>{{ $user->troupe?->name ?: '未設定' }}</td>
+                            <td>{{ $user->troupe?->representative_name ?: '未設定' }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
                                 {{-- アカウント停止フラグ等の判定 --}}
