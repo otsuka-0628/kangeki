@@ -17,6 +17,8 @@ use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\RestoreController;
 use App\Http\Controllers\System\UserController as SystemUserController;
 use App\Http\Controllers\System\PerformanceController as SystemPerformanceController;
+use App\Http\Controllers\ContactController;
+
 
 Route::get('/', function () {
     return view('auth.register-top');
@@ -125,6 +127,10 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+Route::get('/contact/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
 
 Route::get('/terms', function () {

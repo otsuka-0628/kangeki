@@ -28,6 +28,7 @@
                         <th>ID</th>
                         <th>劇団名</th>
                         <th>代表者名</th>
+                        <th>活動拠点</th>
                         <th>メールアドレス</th>
                         <th>ステータス</th>
                         <th>操作</th>
@@ -39,6 +40,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->troupe?->name ?: '未設定' }}</td>
                             <td>{{ $user->troupe?->representative_name ?: '未設定' }}</td>
+                            <td>{{ $user->troupe?->prefecture ?: '未設定' }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
                                 {{-- アカウント停止フラグ等の判定 --}}
