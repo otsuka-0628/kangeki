@@ -28,6 +28,8 @@
         <a href="{{ route('user-register') }}" class="btn btn-register">
             新規登録
         </a>
+
+        <a href="{{ route('contact.index') }}" class="btn-message">お問い合わせ</a>
     </div>
 </body>
 

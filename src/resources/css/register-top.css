@@ -50,3 +50,7 @@ body {
 .withdrawal-message {
     color: rgb(196, 26, 48, );
 }
+
+.btn-message {
+    margin-top: 30px;
+}
