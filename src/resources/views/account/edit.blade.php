@@ -19,7 +19,7 @@
         @endif
 
         <div class="main-contents">
-            <h2>アカウント情報の変更</h2>
+            <h2>メールアドレス・パスワードの変更</h2>
 
             <form action="{{ route('account.update') }}" method="POST">
                 @csrf
