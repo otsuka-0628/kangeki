@@ -9,7 +9,7 @@
             {{-- 公演一覧・削除画面へのリンク --}}
             <a href="{{ route('system.performances.index') }}">登録公演一覧（公演削除）</a>
         </li>
-        <li><a href='{{ route('account.show') }}'>アカウント情報</a></li>
+        <li><a href='{{ route('account.show') }}'>メール・パスワード</a></li>
     </ul>
     <form action="{{ route('logout') }}" method="POST">
         @csrf
