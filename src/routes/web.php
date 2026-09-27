@@ -88,13 +88,15 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 Route::get('/restore/confirm', [RestoreController::class, 'showConfirmForm'])->name('restore.confirm');
+Route::post('/restore/send-mail', [RestoreController::class, 'sendRestoreMail'])->name('restore.send_mail');
 
-Route::post('/restore', [RestoreController::class, 'restore'])->name('restore.perform');
+Route::get('/restore/verify/{id}', [RestoreController::class, 'verifyAndRestore'])
+    ->name('restore.verify')
+    ->middleware('signed');
 
 
 
 Route::middleware(['auth'])->group(function () {
-
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 

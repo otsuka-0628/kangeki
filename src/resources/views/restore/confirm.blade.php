@@ -23,10 +23,10 @@
                     <p>このアカウントを復旧して、過去のデータ（公演情報や設定など）を引き継いだままログインしますか？</p>
                 </div>
 
-                <form action="{{ route('restore.perform') }}" method="POST" class="restore-actions">
+                <form action="{{ route('restore.send_mail') }}" method="POST" class="restore-actions">
                     @csrf
                     <button type="submit" class="btn-restore-confirm restore-btn">
-                        アカウントを復旧してログイン
+                        復旧用メールを送信する
                     </button>
                     <a href="{{ route('user-register') }}" class="btn-restore-confirm cancel-btn">
                         キャンセル（新規登録へ戻る）
