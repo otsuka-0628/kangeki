@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -39,15 +40,12 @@ class RegisterController extends Controller
             ->first();
 
 
-
         if ($trashedUser) {
-
             return redirect()->route('restore.confirm')->with([
                 'email' => $request->userID,
                 'password' => $request->password,
             ]);
         }
-
 
 
         $user = User::create([
@@ -56,8 +54,11 @@ class RegisterController extends Controller
             'role' => 'general',
         ]);
 
+
+        event(new registered($user));
+
         Auth::login($user);
 
-        return redirect('/home')->with('success', 'ユーザー登録が完了しました！');
+        return redirect()->route('verification.notice')->with('success', '確認メールを送信しました！メール内のリンクから登録を完了させてください。');
     }
 }
