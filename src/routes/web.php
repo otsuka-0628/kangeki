@@ -3,6 +3,11 @@
 use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Models\User;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
@@ -46,9 +51,40 @@ Route::get('/reset-password/{token}', function ($token) {
 
 Route::post('/password/update', [ResetPasswordController::class, 'update'])->name('password.update');
 
+
 Route::get('/user-register', [RegisterController::class, 'showRegisterForm'])->name('user-register');
 
 Route::post('/user-register', [RegisterController::class, 'register']);
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (Request $request, $id, $hash) {
+    $user = User::findOrFail($id);
+
+    if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+        abort(403, '無効なURLです。');
+    }
+
+    if (!$user->hasVerifiedEmail()) {
+        $user->markEmailAsVerified();
+        event(new Verified($user));
+    }
+
+    Auth::login($user);
+
+    return redirect('/home')->with('success', 'メール認証が完了しました！');
+})->middleware('signed')->name('verification.verify');
+
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('status', 'verification-link-sent');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
 
 
 Route::get('/restore/confirm', [RestoreController::class, 'showConfirmForm'])->name('restore.confirm');
