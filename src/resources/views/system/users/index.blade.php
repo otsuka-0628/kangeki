@@ -44,7 +44,7 @@
                             <td>{{ $user->email }}</td>
                             <td>
                                 {{-- アカウント停止フラグ等の判定 --}}
-                                @if ($user->is_blocked)
+                                @if ($user->is_suspended)
                                     <span style="color: red; font-weight: bold;">停止中</span>
                                 @else
                                     <span style="color: green;">正常</span>
@@ -56,9 +56,10 @@
                                     class="system-actions">
                                     @csrf
                                     @method('PATCH')
+
                                     <button type="submit" onclick="return confirm('ステータスを変更しますか？')"
                                         class="btn-account-stop">
-                                        {{ $user->is_blocked ? '停止解除' : 'アカウント停止' }}
+                                        {{ $user->is_suspended ? '停止解除' : 'アカウント停止' }}
                                     </button>
                                 </form>
                             </td>
