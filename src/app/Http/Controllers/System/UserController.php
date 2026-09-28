@@ -16,6 +16,7 @@ class UserController extends Controller
         }
 
         $user->is_suspended = !$user->is_suspended;
+
         $user->save();
 
         $displayName = $user->troupe?->name ?: $user->email;

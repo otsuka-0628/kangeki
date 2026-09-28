@@ -11,20 +11,29 @@ class PerformanceController extends Controller
     public function index()
     {
 
-        $performances = Performance::with('troupe')
+        $performances = Performance::withTrashed()
+            ->with('troupe')
             ->latest()
             ->paginate(20);
 
         return view('system.performances.index', compact('performances'));
     }
 
-    public function destroy(Performance $performance)
+    public function togglePublish($id)
     {
-        $title = $performance->title;
+        $performance = Performance::withTrashed()->findOrFail($id);
 
-        $performance->delete();
+        if ($performance->trashed()) {
 
-        return back()->with('success', "公演「{$title}」を削除しました。");
+            $performance->restore();
+            $message = "公演「{$performance->title}」の公開停止を解除しました。";
+        } else {
+
+            $performance->delete();
+            $message = "公演「{$performance->title}」を公開停止しました。";
+        }
+
+        return back()->with('success', $message);
     }
 
 }

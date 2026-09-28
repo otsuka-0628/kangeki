@@ -32,6 +32,7 @@
                         <th>公演タイトル</th>
                         <th>主催劇団</th>
                         <th>登録日</th>
+                        <th>ステータス</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -43,14 +44,21 @@
                             <td>{{ $performance->troupe?->name ?: '（未設定）' }}</td>
                             <td>{{ $performance->created_at->format('Y/m/d') }}</td>
                             <td>
-                                {{-- 公演の強制削除（論理削除）ボタン --}}
-                                <form action="{{ route('system.performances.destroy', $performance) }}" method="POST"
-                                    style="display:inline;">
+                                @if ($performance->trashed())
+                                    <span style="color: red; font-weight: bold;">公開停止中</span>
+                                @else
+                                    <span style="color: green;">公開中</span>
+                                @endif
+                            </td>
+                            <td>
+                                <form action="{{ route('system.performances.toggle-publish', $performance->id) }}"
+                                    method="POST">
                                     @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        onclick="return confirm('本当に公演「{{ $performance->title }}」を削除しますか？\n（※削除後もデータベース上には論理削除として保持されます）')">
-                                        削除
+                                    @method('PATCH')
+
+                                    <button type="submit" onclick="return confirm('ステータスを変更しますか？')"
+                                        class="btn-performance-toggle">
+                                        {{ $performance->trashed() ? '公開' : '公開停止' }}
                                     </button>
                                 </form>
                             </td>
