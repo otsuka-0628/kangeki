@@ -160,7 +160,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users', [SystemUserController::class, 'index'])->name('users.index');
         Route::patch('/users/{user}/toggle-block', [SystemUserController::class, 'toggleBlock'])->name('users.toggle-block');
         Route::get('/performances', [SystemPerformanceController::class, 'index'])->name('performances.index');
-        Route::delete('/performances/{performance}', [SystemPerformanceController::class, 'destroy'])->name('performances.destroy');
+        Route::patch('/performances/{performance}/toggle-publish', [SystemPerformanceController::class, 'togglePublish'])->name('performances.toggle-publish');
     });
 
 });
