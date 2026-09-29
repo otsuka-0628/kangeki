@@ -35,7 +35,12 @@
                     </div>
                     <input type="text" name="email" value="{{ old('email') }}" placeholder=" ユーザーID（メールアドレス）">
                     <input type="submit" value="送信">
+
+                    <a href="{{ route('login') }}" class="back-login-btn">ログイン画面に戻る</a>
+
                 </form>
+
+
             </div>
         </section>
     </div>

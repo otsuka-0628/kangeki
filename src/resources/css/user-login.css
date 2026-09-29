@@ -116,3 +116,9 @@ input[type="submit"] {
     /* margin-top: 10%; */
     border-radius: 5px;
 }
+
+.back-login-btn {
+    margin-top: 40px;
+    color: #000;
+    cursor: pointer;
+}
