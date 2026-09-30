@@ -19,7 +19,7 @@
 }
 
 .required-mark {
-    color: red;
+    color: #c41a30;
 }
 
 .sub-label {
@@ -39,10 +39,10 @@
 }
 
 input[type="number"] {
-    border: 1px solid #000000;
+    border: 1px solid #2B0C0E;
     padding: 4px;
     width: 300px;
     background-color: #fff;
-    color: #91522e9b;
+    color: #2B0C0E;
     box-sizing: border-box;
 }

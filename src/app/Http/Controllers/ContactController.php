@@ -21,10 +21,10 @@ class ContactController extends Controller
         $adminEmails = User::where('role', 'admin')->pluck('email')->toArray();
 
         if (empty($adminEmails)) {
-            $adminEmails = [config('mail.from.address')]; // デフォルトの送信元アドレスなどに逃がす
+            $adminEmails = [config('mail.from.address')];
         }
 
-        // 管理者全員（または最初の1人）宛にメール送信
+
         Mail::to($adminEmails)->send(new ContactSystemMail($validated));
 
         return redirect()->route('contact.thanks');
