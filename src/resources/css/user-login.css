@@ -26,7 +26,7 @@
 }
 
 .tp-group {
-    color: #000;
+    color: #2B0C0E;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,7 +51,7 @@
 }
 
 .password-group a {
-    color: #91522e9b;
+    color: #2B0C0E;
 }
 
 .reset-password-group {
@@ -79,7 +79,7 @@
 }
 
 .error-text {
-    color: rgb(196, 26, 48);
+    color: #c41a30;
     font-size: 0.8em;
     margin-top: -10px;
     margin-bottom: 10px;
@@ -96,12 +96,17 @@
 
 input[type="text"],
 input[type="password"] {
-    border: 1px solid #000000;
+    border: 1px solid #2B0C0E;
     padding: 4px;
     width: 300px;
     background-color: #fff;
-    color: #91522e9b;
+    color: #2B0C0E;
     box-sizing: border-box;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: rgba(43, 12, 14, 0.45);
 }
 
 input[type="password"] {
@@ -110,7 +115,7 @@ input[type="password"] {
 
 input[type="submit"] {
     border: 1px solid #ffffff;
-    background-color: #000;
+    background-color: #2B0C0E;
     color: #fff;
     padding: 5px 10%;
     /* margin-top: 10%; */
@@ -119,6 +124,6 @@ input[type="submit"] {
 
 .back-login-btn {
     margin-top: 40px;
-    color: #000;
+    color: #2B0C0E;
     cursor: pointer;
 }

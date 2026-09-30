@@ -44,15 +44,15 @@
 }
 
 .detail-btn-delete {
-    color: #e53e3e;
+    color: #c41a30;
     /* 赤文字 */
-    border: 1px solid #e53e3e;
+    border: 1px solid #c41a30;
     background-color: #fff;
     transition: background-color 0.2s, color 0.2s;
 }
 
 .detail-btn-delete:hover {
-    background-color: #e53e3e;
+    background-color: #c41a30;
     color: #ffffff;
 }
 

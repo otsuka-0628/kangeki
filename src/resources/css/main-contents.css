@@ -1,6 +1,6 @@
 .main-contents {
     background-color: #f2f2f2;
-    color: black;
+    color: #2B0C0E;
     text-align: center;
     flex: 1;
     padding: 30px;
@@ -8,7 +8,7 @@
 }
 
 .main-contents h2 {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #2B0C0E;
     padding-bottom: 8px;
     margin-bottom: 25px;
 }

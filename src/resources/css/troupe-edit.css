@@ -1,0 +1,23 @@
+.form-group select {
+    width: 100%;
+    max-width: 150px;
+    box-sizing: border-box;
+    align-self: flex-start;
+    margin-left: 10%;
+}
+
+.form-group select {
+    padding: 5px;
+    border: 1px solid #2B0C0E;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: white;
+}
+
+input.troupe-btn-submit {
+    border: 1px solid #ffffff;
+    background-color: #2B0C0E;
+    color: #fff;
+    padding: 5px 30px;
+    border-radius: 5px;
+}
