@@ -1,3 +1,140 @@
+:root {
+    --app-base: #f2f2f2;
+    --app-main: #2B0C0E;
+    --app-accent: #c41a30;
+}
+
+.btn-primary {
+    background-color: var(--app-main) !important;
+    border-color: var(--app-main) !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover {
+    background-color: #421619 !important;
+    border-color: #421619 !important;
+}
+
+.btn-outline-main {
+    color: var(--app-main);
+    border: 1px solid var(--app-main);
+    background-color: transparent;
+    transition: all 0.2s;
+}
+
+.btn-outline-main:hover {
+    background-color: var(--app-main);
+    color: #ffffff;
+}
+
+.badge.bg-danger,
+.badge-accent {
+    background-color: var(--app-accent) !important;
+    color: #ffffff !important;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 1px solid var(--app-accent);
+    color: var(--app-accent);
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: var(--app-accent);
+    color: #ffffff;
+}
+
+.badge.bg-success,
+.badge-main {
+    background-color: var(--app-main) !important;
+    color: #ffffff !important;
+}
+
+.badge-reserved {
+    background-color: #f7f5f3 !important;
+    color: var(--app-main) !important;
+    border: 1px solid var(--app-main);
+    font-weight: bold;
+}
+
+.badge-warning-custom {
+    background-color: #e2dcd5 !important;
+    color: var(--app-main) !important;
+    border: 1px solid var(--app-main);
+}
+
+.badge-success-custom {
+    background-color: #ffffff !important;
+    color: var(--app-main) !important;
+    border: 1px solid #cccccc;
+}
+
+.badge-cancelled {
+    background-color: var(--app-accent) !important;
+    color: #ffffff !important;
+}
+
+
+
+.form-select-custom,
+.form-control-custom {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.95rem;
+    color: #2B0C0E;
+    box-shadow: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-select-custom:focus,
+.form-control-custom:focus {
+    border-color: #2B0C0E;
+    box-shadow: 0 0 0 0.25rem rgba(43, 12, 14, 0.15);
+}
+
+.search-box .card {
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+
+input#keyword.form-control-custom {
+    width: 100% !important;
+    height: 38px !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 6px !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.95rem !important;
+    background-color: #ffffff !important;
+    color: #2B0C0E !important;
+    box-sizing: border-box !important;
+}
+
+input#keyword.form-control-custom:focus {
+    border-color: #2B0C0E !important;
+    box-shadow: 0 0 0 0.25rem rgba(43, 12, 14, 0.15) !important;
+}
+
+.form-select-custom {
+    height: 38px !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 6px !important;
+    font-size: 0.95rem !important;
+    color: #2B0C0E !important;
+}
+
+.form-select-custom:focus {
+    border-color: #2B0C0E !important;
+    box-shadow: 0 0 0 0.25rem rgba(43, 12, 14, 0.15) !important;
+}
+
+
 .admin-notes {
     font-size: 14px;
     color: #c41a30;
