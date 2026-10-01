@@ -18,9 +18,8 @@
         <div class="main-contents">
             <h2>新規公演の登録</h2>
 
+            <div class="performance-form">
 
-            <form action="{{ route('performances.store') }}" method="POST">
-                @csrf
 
                 @if($errors->any())
                     <div class="error-text">
@@ -32,8 +31,8 @@
                     </div>
                 @endif
 
-
-                <div class="create-container">
+                <form action="{{ route('performances.store') }}" method="POST">
+                    @csrf
 
                     <!-- 冠タイトル -->
                     <div class="form-group">
@@ -135,8 +134,9 @@
                         <input type="submit" value="登録" class="btn-submit">
                     </div>
 
-                </div>
-            </form>
+                </form>
+            </div>
+
         </div>
 
     </div>

@@ -20,9 +20,8 @@
         <div class="main-contents">
             <h2>公演情報の編集</h2>
 
-            <form action="{{ route('performances.update', $performance->id) }}" method="POST">
-                @csrf
-                @method('PUT')
+            <div class="performance-form">
+
 
                 @if($errors->any())
                     <div class="error-text">
@@ -34,7 +33,9 @@
                     </div>
                 @endif
 
-                <div class="create-container">
+                <form action="{{ route('performances.update', $performance->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
                     <!-- 冠タイトル -->
                     <div class="form-group">
@@ -176,12 +177,13 @@
                     <div class="form-submit">
                         <input type="submit" value="更新" class="btn-submit">
                     </div>
+                </form>
+            </div>
 
-                </div>
-            </form>
         </div>
 
     </div>
+
 </body>
 
 </html>

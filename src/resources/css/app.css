@@ -4,7 +4,7 @@
 @import './register-top.css';
 @import './sidemenu.css';
 @import './main-contents';
-@import './create.css';
+@import './performance/create.css';
 @import './troupe.css';
 @import './troupe-edit.css';
 @import './home.css';
