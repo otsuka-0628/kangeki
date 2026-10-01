@@ -1,0 +1,143 @@
+.performance-form {
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.performance-form .form-group {
+    max-width: none !important;
+}
+
+.performance-form .form-group input,
+.performance-form .form-group textarea,
+.performance-form .form-group label {
+    max-width: none !important;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.required-mark {
+    color: #c41a30;
+}
+
+.btn-remove {
+    background-color: #c41a30;
+    color: #fff;
+    padding: 3px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.performance-form #schedule-container,
+.performance-form #seat-container,
+.performance-form #ticket-type-container,
+.performance-form #ticket-fee-container,
+.performance-form .form-group {
+    width: 100%;
+}
+
+.input-unit-wrapper {
+    width: 100%;
+}
+
+.performance-form span.sub-label,
+.performance-form label.sub-label,
+.performance-form div.sub-label,
+.performance-form .sub-label,
+.performance-form [class*="sub-label"] {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 0px !important;
+    margin-top: 5px;
+    font-size: 12px !important;
+    text-align: left !important;
+    float: none !important;
+}
+
+.performance-form .sub-label,
+.performance-form .seat-label,
+.performance-form .ticket-fee-label {
+    display: block !important;
+    margin-bottom: 2px !important;
+    font-size: 12px !important;
+    text-align: left !important;
+}
+
+.performance-form .ticket-fee-item .input-unit-wrapper {
+    margin-top: 0 !important;
+}
+
+.performance-form .btn-submit {
+    padding: 5px 30px;
+}
+
+
+
+
+.performance-form .schedule-item,
+.performance-form .ticket-type-item,
+.performance-form .input-unit-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+}
+
+.performance-form .schedule-item input,
+.performance-form .ticket-type-item input,
+.performance-form .input-unit-wrapper input {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.performance-form .btn-remove {
+    position: absolute !important;
+    left: 100% !important;
+    margin-left: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    white-space: nowrap !important;
+    cursor: pointer;
+}
+
+.performance-form .unit {
+    position: absolute !important;
+    left: 100% !important;
+    margin-left: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    white-space: nowrap !important;
+}
+
+
+.performance-form .group-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-bottom: 8px !important;
+}
+
+.performance-form .group-header button.btn-add,
+.performance-form button#add-schedule-btn,
+.performance-form button#add-ticket-btn {
+    display: inline-block !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    background: transparent !important;
+    border: solid 1px !important;
+    border-radius: 3px;
+    font-weight: bold !important;
+    font-size: 0.9em !important;
+    cursor: pointer !important;
+    padding: 0 3px !important;
+    margin-left: 10px !important;
+}
+
+
+.performance-form .group-header .form-label {
+    margin-bottom: 0 !important;
+    white-space: nowrap !important;
+}

@@ -1,6 +1,12 @@
+.troupe-form {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .form-group select {
     width: 100%;
-    max-width: 150px;
+    max-width: 120px;
     box-sizing: border-box;
     align-self: flex-start;
     margin-left: 10%;

@@ -56,13 +56,24 @@
                     <p class="schedules-list">
                     <ul>
                         @foreach($performance->schedules as $schedule)
-                            <li>{{ \Carbon\Carbon::parse($schedule->start_at)->isoFormat('M月D日(ddd) HH:mm') }}</li>
+                            <li>{{ \Carbon\Carbon::parse($schedule->start_at)->isoFormat('M月D日(ddd) HH:mm') }}（
+                                座席数：{{ number_format($schedule->capacity) }}席 ）</li>
                         @endforeach
                     </ul>
                     </p>
                 @else
                     <p>※開演日時の登録はありません。</p>
                 @endif
+
+                @forelse($performance->ticketTypes as $type)
+                    <p>{{ $type->name }}：{{ number_format($type->price) }}円</p>
+                @empty
+                    <p>チケット情報はありません。</p>
+                @endforelse
+
+                <p>予約上限：一人{{ $performance->max_tickets_per_person }}枚まで</p>
+
+                <p>注意事項：{{ $performance->notes ?: '特になし' }}</p>
 
             </div>
         </div>
