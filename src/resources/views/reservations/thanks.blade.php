@@ -14,8 +14,9 @@
     <div class="lr-bg" style="background-image: url('{{ asset('images/lr-background.jpg') }}')">
         <section class=login-form>
             <div class="form-root">
-                <img class="login-logo" src="{{ asset('images/logo-black.png') }}">
-                <div class="contact-thanks-container">
+                <img class="logo-reservation-thanks" src="{{ asset('images/logo-black.png') }}">
+
+                <div class="reservation-thanks-container">
                     <h2>ご予約が完了しました。</h2>
                     <p>ご入力いただいたメールアドレスへ、予約内容を記載した確認メールをお送りしましたのでご確認ください。</p>
                     <h2>【予約内容の変更・キャンセルについて】</h2>
