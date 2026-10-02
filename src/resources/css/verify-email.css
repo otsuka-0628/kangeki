@@ -1,0 +1,47 @@
+.verify-logo {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 15%;
+}
+
+.verify-email-container {
+    width: 60%;
+    color: #2B0C0E;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.verify-email-text h2 {
+    color: #c41a30;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 3px;
+    padding-top: 30px;
+}
+
+.verify-email-text {
+    text-align: left;
+}
+
+.resend-text {
+    padding-top: 50px;
+    padding-bottom: 15px;
+    color: #c41a30;
+}
+
+.btn-resend-mail {
+    background-color: #2B0C0E;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.back-login-btn {
+    color: #2B0C0E;
+    margin-top: 30px;
+}
