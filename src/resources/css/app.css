@@ -16,6 +16,7 @@
 @import './contact-index.css';
 @import './thanks.css';
 @import './verify-email.css';
+@import './restore-sendmail';
 
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
