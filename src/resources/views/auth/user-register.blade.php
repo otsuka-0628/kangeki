@@ -25,6 +25,13 @@
                         @error('password')
                             <div class="error-text">{{ $message }}</div>
                         @enderror
+
+                        @if (session('error'))
+                            <div class="error-text">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
                     </div>
                     <input type="text" name="userID" value="{{ old('userID') }}" placeholder="ユーザーID（メールアドレス）">
                     <div class="password-group">
