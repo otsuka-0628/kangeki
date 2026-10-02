@@ -2,14 +2,15 @@
     margin-left: auto;
     margin-right: auto;
     padding-top: 15%;
-    margin-bottom: 15%;
+
 }
 
 .restore-text {
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 70%;
     color: #c41a30;
+    margin-top: 15%;
 }
 
 .restore-actions {
@@ -21,16 +22,19 @@
 
 .btn-restore-confirm {
     cursor: pointer;
+    width: 250px;
+    text-align: center;
+    padding: 5px 0;
     border-radius: 3px;
-    padding: 5px;
 }
 
 .btn-restore-confirm.restore-btn {
-    color: #2B0C0E;
-    border: solid 1px #2B0C0E;
+    background-color: #2B0C0E;
+    color: white;
 }
 
 .btn-restore-confirm.cancel-btn {
-    background-color: #2B0C0E;
-    color: white;
+    color: #2B0C0E;
+    border: solid 1px #2B0C0E;
+    background-color: #fff;
 }
