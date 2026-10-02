@@ -36,6 +36,8 @@
                         <a href="{{ route('privacy') }}">プライバシーポリシー</a>
                     </div>
                     <input type="submit" value="新規登録">
+
+                    <a href="{{ route('register-top') }}" class="register-top-link">トップページへ戻る</a>
                 </form>
             </div>
         </section>

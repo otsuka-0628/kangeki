@@ -40,6 +40,8 @@
                     </div>
 
                     <input type="submit" value="ログイン">
+
+                    <a href="{{ route('register-top') }}" class="register-top-link">トップページへ戻る</a>
                 </form>
             </div>
         </section>
