@@ -22,7 +22,7 @@ class RestoreAccountMail extends Mailable
 
     public function build()
     {
-        return $this->subject('【劇団アプリ】アカウント復旧手続きのご案内')
+        return $this->subject('【KANGEKI】アカウント復旧手続きのご案内')
             ->view('emails.restore');
     }
 }
