@@ -25,6 +25,13 @@
                         @error('password')
                             <div class="error-text">{{ $message }}</div>
                         @enderror
+
+                        @if (session('error'))
+                            <div class="error-text">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
                     </div>
                     <input type="text" name="userID" value="{{ old('userID') }}" placeholder="ユーザーID（メールアドレス）">
                     <div class="password-group">
@@ -36,6 +43,8 @@
                         <a href="{{ route('privacy') }}">プライバシーポリシー</a>
                     </div>
                     <input type="submit" value="新規登録">
+
+                    <a href="{{ route('register-top') }}" class="register-top-link">トップページへ戻る</a>
                 </form>
             </div>
         </section>

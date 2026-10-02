@@ -27,7 +27,7 @@ use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('auth.register-top');
-});
+})->name('register-top');
 
 /*Route::get('/', function () {
     return view('welcome');

@@ -15,7 +15,7 @@ class RestoreController extends Controller
     {
         $email = session('email');
         if (!$email) {
-            return redirect()->route('register');
+            return redirect()->route('user-register');
         }
         session()->keep(['email']);
 
@@ -26,7 +26,7 @@ class RestoreController extends Controller
     {
         $email = session('email');
         if (!$email) {
-            return redirect()->route('register')->with('error', 'セッションが無効です。最初からやり直してください。');
+            return redirect()->route('user-register')->with('error', 'セッションが無効です。最初からやり直してください。');
         }
 
         $user = User::withTrashed()
@@ -35,7 +35,7 @@ class RestoreController extends Controller
             ->first();
 
         if (!$user) {
-            return redirect()->route('register');
+            return redirect()->route('user-register');
         }
 
 

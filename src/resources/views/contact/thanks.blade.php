@@ -24,18 +24,18 @@
         <div class="lr-bg" style="background-image: url('{{ asset('images/lr-background.jpg') }}')">
             <section class=login-form>
                 <div class="form-root">
-                    <img class="login-logo" src="{{ asset('images/logo-black.png') }}">
+                    <img class="logo-contact-thanks" src="{{ asset('images/logo-black.png') }}">
 
                     <div class="contact-thanks-container">
-                        <h2>お問い合わせ送信完了</h2>
+                        <h2>【お問い合わせ送信完了】</h2>
                         <p>お問い合わせありがとうございます。</p>
-                        <p>ご入力いただいた内容を確認の上、管理者よりメールにてご連絡いたします。</p>
+                        <p>ご入力いただいた内容を確認の上、管理者よりメールにてご連絡いたしますのでお待ちください。</p>
 
                         <div class="contact-thanks-actions">
                             @auth
                                 <a href="{{ route('home') }}" class="btn btn-primary">トップページへ戻る</a>
                             @else
-                                <a href="{{ route('auth.register-top') }}" class="btn">トップページへ戻る</a>
+                                <a href="{{ route('register-top') }}" class="btn-register-top">トップページへ戻る</a>
                             @endauth
                         </div>
                     </div>

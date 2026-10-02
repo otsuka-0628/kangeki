@@ -1,0 +1,60 @@
+.logo-contact-thanks {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 15%;
+}
+
+.contact-thanks-container {
+    width: 60%;
+    color: #2B0C0E;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.contact-thanks-container h2 {
+    color: #c41a30;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 3px;
+    padding-top: 10px;
+}
+
+.contact-thanks-actions {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.btn-register-top {
+    background-color: #2B0C0E;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 3px;
+}
+
+
+
+
+.logo-reservation-thanks {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 10%;
+}
+
+.reservation-thanks-container {
+    width: 70%;
+    color: #2B0C0E;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.reservation-thanks-container h2 {
+    color: #c41a30;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 3px;
+    margin-top: 10px;
+}

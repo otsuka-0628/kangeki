@@ -14,12 +14,16 @@
     <div class="lr-bg" style="background-image: url('{{ asset('images/lr-background.jpg') }}')">
         <section class=login-form>
             <div class="form-root">
-                <img class="login-logo" src="{{ asset('images/logo-black.png') }}">
-                <div class="verify-email-message">
-                    <h2>ご登録ありがとうございます。</h2>
+                <img class="verify-logo" src="{{ asset('images/logo-black.png') }}">
 
-                    <p>ご入力いただいたメールアドレスに、確認用のメールを送信しました。</p>
-                    <p>メールに記載されているリンクをクリックして、登録を完了させてください。</p>
+                <div class="verify-email-container">
+                    <div class="verify-email-text">
+
+                        <h2>ご登録ありがとうございます。</h2>
+
+                        <p>ご入力いただいたメールアドレスに、確認用のメールを送信しました。</p>
+                        <p>メールに記載されているリンクをクリックして、登録を完了させてください。</p>
+                    </div>
 
                     @if (session('status') == 'verification-link-sent')
                         <p>
@@ -27,22 +31,19 @@
                         </p>
                     @endif
 
-                    <p>メールが届いていない場合はこちら</p>
+                    <p class="resend-text">メールが届いていない場合はこちら</p>
 
                     <form method="POST" action="{{ route('verification.send') }}">
                         @csrf
-                        <button type="submit">
-                            確認メールを再送信する
+                        <button type="submit" class="btn-resend-mail">
+                            確認メールを再送信
                         </button>
                     </form>
 
-                    <a href="{{ route('login') }}">ログイン画面に戻る</a>
+                    <a href="{{ route('login') }}" class="back-login-btn">ログイン画面に戻る</a>
+
                 </div>
 
-                <div class="tp-group">
-                    <a href="{{ route('terms') }}">利用規約</a>
-                    <a href="{{ route('privacy') }}">プライバシーポリシー</a>
-                </div>
                 </form>
             </div>
         </section>
