@@ -23,7 +23,7 @@
             <h2>メールアドレス・パスワード</h2>
 
             @if (session('status'))
-                <div style="color: green; margin-bottom: 15px;">
+                <div style="color: #c41a30; margin-bottom: 15px;">
                     {{ session('status') }}
                 </div>
             @endif
