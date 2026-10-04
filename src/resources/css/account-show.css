@@ -1,0 +1,38 @@
+.show-account-container {
+    position: relative;
+    background-color: white;
+    min-height: 40vh;
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.account-info {
+    text-align: left;
+    padding: 50px 60px;
+}
+
+.account-info dt {
+    color: #7c7c7c;
+}
+
+.account-info dd {
+    padding-bottom: 10px;
+}
+
+.account-email {
+    font-size: 24px;
+}
+
+.btn-account-edit {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 5px;
+    padding: 1px 10px;
+    color: rgb(100, 100, 100);
+}
