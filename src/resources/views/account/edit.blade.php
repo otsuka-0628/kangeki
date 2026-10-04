@@ -25,43 +25,44 @@
                 @csrf
                 @method('PUT')
 
-                <!-- メールアドレス変更 -->
-                <div style="margin-bottom: 15px;">
-                    <label for="email">新しいメールアドレス</label><br>
+                <div class="account-edit-form">
+                    <!-- メールアドレス変更 -->
+
+                    <label for="email">新しいメールアドレス</label>
                     <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" required>
                     @error('email')
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
-                </div>
 
-                <!-- 新しいパスワード -->
-                <div style="margin-bottom: 15px;">
-                    <label for="password">新しいパスワード（変更する場合のみ）</label><br>
+                    <!-- 新しいパスワード -->
+
+                    <label for="password">新しいパスワード</label>
                     <input type="password" name="password" id="password">
                     @error('password')
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
-                </div>
 
-                <!-- 新しいパスワード（確認用） -->
-                <div style="margin-bottom: 15px;">
-                    <label for="password_confirmation">新しいパスワード（確認用）</label><br>
+                    <!-- 新しいパスワード（確認用） -->
+
+                    <label for="password_confirmation">新しいパスワード（確認用）</label>
                     <input type="password" name="password_confirmation" id="password_confirmation">
-                </div>
 
-                <hr style="margin: 20px 0;">
 
-                <!-- 本人確認用：現在のパスワード -->
-                <div style="margin-bottom: 20px;">
-                    <label for="current_password"><strong>セキュリティ確認：現在のパスワード（必須）</strong></label><br>
+                    <!-- 本人確認用：現在のパスワード -->
+
+                    <label for="current_password">現在のパスワード<span class="required-form">＊必須</span></label>
                     <input type="password" name="current_password" id="current_password" required>
                     @error('current_password')
                         <p style="color: red;">{{ $message }}</p>
                     @enderror
+
                 </div>
 
-                <button type="submit">更新する</button>
-                <a href="{{ route('account.show') }}">キャンセル</a>
+                <div class="account-form-actions">
+                    <button type="submit">更新する</button>
+                    <a href="{{ route('account.show') }}">キャンセル</a>
+                </div>
+
             </form>
 
         </div>

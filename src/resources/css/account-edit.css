@@ -1,0 +1,47 @@
+.account-edit-form {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+}
+
+.account-edit-form input {
+    border: solid 1px #2B0C0E;
+    padding: 4px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.account-edit-form label {
+    display: block;
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.account-form-actions {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.account-form-actions button {
+    background-color: #2B0C0E;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.account-form-actions a {
+    border: solid 1px #2B0C0E;
+    background-color: #fff;
+    color: #2B0C0E;
+    border-radius: 3px;
+}
+
+.account-form-actions button,
+.account-form-actions a {
+    width: 130px;
+    padding: 5px 0;
+}

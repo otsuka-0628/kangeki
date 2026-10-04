@@ -20,20 +20,27 @@
         @endif
 
         <div class="main-contents">
-            <h2>アカウント情報</h2>
+            <h2>メールアドレス・パスワード</h2>
 
             @if (session('status'))
-                <div style="color: green; margin-bottom: 15px;">
+                <div style="color: #c41a30; margin-bottom: 15px;">
                     {{ session('status') }}
                 </div>
             @endif
 
-            <div>
-                <p><strong>ユーザーID（メールアドレス）:</strong> {{ $user->email }}</p>
-                <p><strong>パスワード:</strong> ********</p>
+            <div class="show-account-container">
+
+                <dl class="account-info">
+                    <dt>ユーザーID（メールアドレス）</dt>
+                    <dd name="account-email"> {{ $user->email }}</dd>
+                    <dt>パスワード</dt>
+                    <dd name="account-password"><strong>＊＊＊＊＊＊＊＊</strong></dd>
+                </dl>
+
+                <a href="{{ route('account.edit') }}" class="btn-account-edit">編集する</a>
+
             </div>
 
-            <a href="{{ route('account.edit') }}" class="btn">編集する</a>
         </div>
     </div>
 </body>

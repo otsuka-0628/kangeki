@@ -1,49 +1,35 @@
-.troupe-container {
+.show-account-container {
     position: relative;
     background-color: white;
     min-height: 40vh;
     width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 50px;
-    margin-right: auto;
-    margin-left: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* align-items: center; */
 }
 
-.no-troupe-container {
-    position: relative;
-    background-color: white;
-    color: #c41a30;
-    min-height: 40vh;
-    width: 90%;
-    margin-right: auto;
-    margin-left: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.troupe-info {
+.account-info {
     text-align: left;
-    padding: 50px 60px;
+    padding: 0 60px;
+    margin-top: 60px;
 }
 
-.troupe-info dt {
+.account-info dt {
     color: #7c7c7c;
 }
 
-.troupe-info dd {
+.account-info dd {
     padding-bottom: 30px;
 }
 
-.troupe-name {
+.account-email {
     font-size: 24px;
 }
 
-.btn-troupe {
+.btn-account-edit {
     position: absolute;
     top: 15px;
     right: 30px;
