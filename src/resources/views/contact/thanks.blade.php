@@ -5,46 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>送信完了</title>
+    @vite([
+        'resources/css/app.css',
+    ])
 </head>
 
 <body>
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KANGEKI</title>
-        @vite([
-            'resources/css/app.css',
-        ])
-    </head>
+    <div class="lr-bg" style="background-image: url('{{ asset('images/lr-background.jpg') }}')">
+        <section class=login-form>
+            <div class="form-root">
+                <img class="logo-contact-thanks" src="{{ asset('images/logo-black.png') }}">
 
-    <body>
-        <div class="lr-bg" style="background-image: url('{{ asset('images/lr-background.jpg') }}')">
-            <section class=login-form>
-                <div class="form-root">
-                    <img class="logo-contact-thanks" src="{{ asset('images/logo-black.png') }}">
+                <div class="contact-thanks-container">
+                    <h2>【お問い合わせ送信完了】</h2>
+                    <p>お問い合わせありがとうございます。</p>
+                    <p>ご入力いただいた内容を確認の上、管理者よりメールにてご連絡いたしますのでお待ちください。</p>
 
-                    <div class="contact-thanks-container">
-                        <h2>【お問い合わせ送信完了】</h2>
-                        <p>お問い合わせありがとうございます。</p>
-                        <p>ご入力いただいた内容を確認の上、管理者よりメールにてご連絡いたしますのでお待ちください。</p>
-
-                        <div class="contact-thanks-actions">
-                            @auth
-                                <a href="{{ route('home') }}" class="btn btn-primary">トップページへ戻る</a>
-                            @else
-                                <a href="{{ route('register-top') }}" class="btn-register-top">トップページへ戻る</a>
-                            @endauth
-                        </div>
+                    <div class="contact-thanks-actions">
+                        @auth
+                            <a href="{{ route('home') }}" class="btn btn-primary">トップページへ戻る</a>
+                        @else
+                            <a href="{{ route('register-top') }}" class="btn-register-top">トップページへ戻る</a>
+                        @endauth
                     </div>
-
-                    </form>
                 </div>
-            </section>
-        </div>
 
-    </body>
+                </form>
+            </div>
+        </section>
+    </div>
 
-    </html>
+</body>
+
+</html>
