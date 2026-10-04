@@ -2,7 +2,8 @@
     position: relative;
     background-color: white;
     min-height: 40vh;
-    width: 90%;
+    width: 60%;
+    margin-top: 50px;
     margin-right: auto;
     margin-left: auto;
     display: flex;
@@ -35,7 +36,7 @@
 }
 
 .troupe-info dd {
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 }
 
 .troupe-name {
