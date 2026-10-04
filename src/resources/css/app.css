@@ -19,6 +19,9 @@
 @import './restore-sendmail';
 @import './account-show.css';
 @import './account-edit.css';
+@import './reservation-create.css';
+
+
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
