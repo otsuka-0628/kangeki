@@ -5,15 +5,37 @@
     background-attachment: fixed;
     min-height: 100vh;
     width: 100%;
-    padding-top: 10vh;
+    padding-top: 5vh;
 }
 
 .reservation-create-container {
     background-color: rgba(255, 255, 255, 0.7);
     width: 60%;
-    height: 80vh;
+    height: 90vh;
     margin-right: auto;
     margin-left: auto;
     color: #2B0C0E;
     padding: 50px 60px;
+}
+
+.reservation-create-container h1 {
+    font-size: 24px;
+}
+
+.reservation-create-form {
+    padding-top: 30px;
+}
+
+.reservation-create-form select,
+.reservation-create-form input,
+.reservation-create-form textarea {
+    border: solid 1px #2B0C0E;
+    padding: 5px 0;
+    background-color: #fff;
+}
+
+.reservation-create-form submit[type=button] {
+    background-color: #2B0C0E;
+    border-radius: 3px;
+    padding: 5px 20px;
 }
