@@ -70,7 +70,7 @@
                     <!-- 券種と枚数選択（一人当たり上限数を動的に反映） -->
                     <h3>2. チケット枚数 (最大{{ $performance->max_tickets_per_person }}枚まで)</h3>
                     @forelse($performance->ticketTypes as $type)
-                        <div style="margin-bottom: 10px;">
+                        <div class="tickets-count-form">
                             <label>{{ $type->name }} ({{ number_format($type->price) }}円): </label>
                             <select name="tickets[{{ $type->id }}]">
                                 @for($i = 0; $i <= $performance->max_tickets_per_person; $i++)
@@ -81,16 +81,16 @@
                             </select>
                         </div>
                     @empty
-                        <div style="margin-bottom: 10px;">
-                            <label>枚数: </label>
-                            <select name="default_quantity">
-                                @for($i = 1; $i <= $performance->max_tickets_per_person; $i++)
-                                    <option value="{{ $i }}" {{ old('default_quantity') == $i ? 'selected' : '' }}>
-                                        {{ $i }} 枚
-                                    </option>
-                                @endfor
-                            </select>
-                        </div>
+
+                        <label>枚数: </label>
+                        <select name="default_quantity">
+                            @for($i = 1; $i <= $performance->max_tickets_per_person; $i++)
+                                <option value="{{ $i }}" {{ old('default_quantity') == $i ? 'selected' : '' }}>
+                                    {{ $i }} 枚
+                                </option>
+                            @endfor
+                        </select>
+
                     @endforelse
 
 
