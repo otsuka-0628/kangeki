@@ -21,7 +21,7 @@
             <h2>予約内容の確認・変更</h2>
 
             @if (session('status'))
-                <div style="padding: 10px; background-color: #d4edda; color: #155724; margin-bottom: 20px;">
+                <div style="padding: 10px; background-color: #c41a30; color: #fff; margin-bottom: 20px;">
                     {{ session('status') }}
                 </div>
             @endif
