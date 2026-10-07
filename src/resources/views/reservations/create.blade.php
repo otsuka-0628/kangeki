@@ -14,7 +14,7 @@
 
         <div class="reservation-create-container">
 
-            <p>{{ $performance->sub_title }}</p>
+            <p class="sub-title">{{ $performance->sub_title }}</p>
             <h1>{{ $performance->title }}</h1>
             <p>主　　催：{{ $performance->troupe->name }}</p>
             <p>注意事項：{{ $performance->notes ?: '特になし' }}</p>
@@ -36,36 +36,38 @@
 
                     <!-- 日時（ステージ）の選択 -->
                     <h3>1. 日時選択</h3>
-                    <select name="performance_schedule_id" required>
-                        <option value="">-- 日時を選択してください --</option>
-                        @foreach($performance->schedules as $schedule)
-                            @php
+                    <div class="schedules-select">
+                        <select name="performance_schedule_id" required>
+                            <option value="">-- 日時を選択してください --</option>
+                            @foreach($performance->schedules as $schedule)
+                                @php
 
-                                $reservedCount = $schedule->reservations
-                                    ->where('status', '!=', 'cancelled')
-                                    ->flatMap->details
-                                    ->sum('quantity');
+                                    $reservedCount = $schedule->reservations
+                                        ->where('status', '!=', 'cancelled')
+                                        ->flatMap->details
+                                        ->sum('quantity');
 
-                                $remainingSeats = $schedule->capacity - $reservedCount;
+                                    $remainingSeats = $schedule->capacity - $reservedCount;
 
-                                $isSoldOut = $remainingSeats <= 0;
-                            @endphp
+                                    $isSoldOut = $remainingSeats <= 0;
+                                @endphp
 
-                            <option value="{{ $schedule->id }}" {{ $isSoldOut ? 'disabled' : '' }} {{ old('performance_schedule_id') == $schedule->id ? 'selected' : '' }}>
+                                <option value="{{ $schedule->id }}" {{ $isSoldOut ? 'disabled' : '' }} {{ old('performance_schedule_id') == $schedule->id ? 'selected' : '' }}>
 
-                                {{ \Carbon\Carbon::parse($schedule->start_at)->format('Y/m/d H:i') }}
+                                    {{ \Carbon\Carbon::parse($schedule->start_at)->format('Y/m/d H:i') }}
 
-                                @if($isSoldOut)
-                                    【完売】
-                                @elseif($remainingSeats <= 5)
-                                    （残りわずか：あと{{ $remainingSeats }}席）
-                                @else
-                                    （残席あり）
-                                @endif
+                                    @if($isSoldOut)
+                                        【完売】
+                                    @elseif($remainingSeats <= 5)
+                                        （残りわずか：あと{{ $remainingSeats }}席）
+                                    @else
+                                        （残席あり）
+                                    @endif
 
-                            </option>
-                        @endforeach
-                    </select>
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <!-- 券種と枚数選択（一人当たり上限数を動的に反映） -->
                     <h3>2. チケット枚数 (最大{{ $performance->max_tickets_per_person }}枚まで)</h3>
@@ -96,14 +98,26 @@
 
                     <!-- 観客情報 -->
                     <h3>3. お客様情報</h3>
-                    <p><label>お名前 * : <input type="text" name="customer_name" value="{{ old('customer_name') }}"
-                                required></label></p>
-                    <p><label>メールアドレス * : <input type="email" name="customer_email" value="{{ old('customer_email') }}"
-                                required></label></p>
-                    <p><label>電話番号 : <input type="tel" name="customer_phone"
-                                value="{{ old('customer_phone') }}"></label>
-                    </p>
-                    <p><label>備考 : <textarea name="notes">{{ old('notes') }}</textarea></label></p>
+
+                    <div class="resrvation-form-group">
+                        <label>お名前<span class="required-form">＊必須</span></label>
+                        <input type="text" name="customer_name" value="{{ old('customer_name') }}" required>
+                    </div>
+
+                    <div class="resrvation-form-group">
+                        <label>メールアドレス<span class="required-form">＊必須</span></label>
+                        <input type="email" name="customer_email" value="{{ old('customer_email') }}" required>
+                    </div>
+
+                    <div class="resrvation-form-group">
+                        <label>電話番号</label>
+                        <input type="tel" name="customer_phone" value="{{ old('customer_phone') }}">
+                    </div>
+
+                    <div class="resrvation-form-group">
+                        <label>備考</label>
+                        <textarea name="notes">{{ old('notes') }}</textarea>
+                    </div>
 
                     <button type="submit">予約を確定する</button>
 
