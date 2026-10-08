@@ -22,7 +22,7 @@
 @import './account-edit.css';
 @import './reservation-create.css';
 @import './system/dashboard.css';
-
+@import './pagenation.css';
 
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
