@@ -25,7 +25,7 @@
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
 
-            <table class="table">
+            <table class="system-performance-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -65,7 +65,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">登録されている公演はありません。</td>
+                            <td colspan="6">登録されている公演はありません。</td>
                         </tr>
                     @endforelse
                 </tbody>
