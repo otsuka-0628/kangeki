@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登録公演一覧</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     @vite([
         'resources/css/app.css'
     ])
@@ -25,7 +28,7 @@
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
 
-            <table class="table">
+            <table class="system-performance-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -65,7 +68,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">登録されている公演はありません。</td>
+                            <td colspan="6">登録されている公演はありません。</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -73,8 +76,9 @@
 
             {{-- ページネーションリンク --}}
             <div>
-                {{ $performances->links() }}
+                {{ $performances->links('pagination::bootstrap-5') }}
             </div>
+
         </div>
     </div>
 </body>

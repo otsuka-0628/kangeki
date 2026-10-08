@@ -43,7 +43,7 @@
 
                     <!-- 公演タイトル -->
                     <div class="form-group">
-                        <label class="form-label">公演タイトル <span class="required-mark">*</span></label>
+                        <label class="form-label">公演タイトル <span class="required-mark">＊必須</span></label>
                         <input type="text" name="title" value="{{ old('title') }}" required placeholder="例：夏の夜の夢"
                             class="form-control">
                     </div>
@@ -108,7 +108,7 @@
 
                     <!-- 一人当たり予約上限枚数 -->
                     <div class="form-group">
-                        <label class="form-label">一人当たり予約上限枚数</label>
+                        <label class="form-label">一人当たり予約上限枚数<span class="required-mark">＊必須</span></label>
                         <div class="input-unit-wrapper">
                             <input type="number" name="max_tickets_per_person"
                                 value="{{ old('max_tickets_per_person', 5) }}" min="1" class="form-control"><span
@@ -118,7 +118,7 @@
 
                     <!-- 予約受付期限 -->
                     <div class="form-group">
-                        <label class="form-label">予約受付期限</label>
+                        <label class="form-label">予約受付期限<span class="required-mark">＊必須</span></label>
                         <input type="datetime-local" name="end_of_reservation_at"
                             value="{{ old('end_of_reservation_at') }}" class="form-control">
                     </div>

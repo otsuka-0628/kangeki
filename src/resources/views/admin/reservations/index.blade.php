@@ -201,7 +201,7 @@
                 </tbody>
             </table>
 
-            {{ $reservations->links() }}
+            {{ $reservations->links('pagination::bootstrap-5') }}
 
             @foreach($reservations as $reservation)
                 @if($reservation->status === 'reserved')

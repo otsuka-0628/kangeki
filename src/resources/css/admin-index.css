@@ -142,8 +142,9 @@ input#keyword.form-control-custom:focus {
 }
 
 .admin-index-table {
-    width: 80vw;
+    width: 100%;
     table-layout: fixed;
+
 }
 
 .admin-index-table th:nth-child(1) {
