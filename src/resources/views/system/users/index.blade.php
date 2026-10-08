@@ -66,7 +66,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">登録されているユーザーはいません。</td>
+                            <td colspan="7">登録されているユーザーはいません。</td>
                         </tr>
                     @endforelse
                 </tbody>

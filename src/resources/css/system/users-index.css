@@ -1,6 +1,24 @@
+.alert-success {
+    color: #c41a30;
+    margin-bottom: 10px;
+}
+
 .system-troupes-table {
-    width: 80vw;
+    width: 90%;
     table-layout: fixed;
+    margin: 20px auto;
+    word-break: break-all;
+}
+
+.system-troupes-table th {
+    background-color: #fff;
+    border: solid 2px #fff;
+    padding: 5px 0px;
+}
+
+.system-troupes-table td {
+    border: solid 2px white;
+    padding: 5px;
 }
 
 .system-troupes-table th:nth-child(1) {
@@ -23,14 +41,18 @@
 
 
 .system-troupes-table th:nth-child(5) {
-    width: 200px;
+    width: auto;
 }
 
 
 .system-troupes-table th:nth-child(6) {
-    width: 150px;
+    width: 120px;
 }
 
 .system-troupes-table th:nth-child(7) {
     width: 150px;
+}
+
+.btn-account-stop {
+    cursor: pointer;
 }
