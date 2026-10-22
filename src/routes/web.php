@@ -13,7 +13,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TroupeController;
 use App\Http\Controllers\PerformanceController;
-use App\Http\controllers\AccountController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 use App\Http\Controllers\System\DashboardController as SystemDashboardController;
