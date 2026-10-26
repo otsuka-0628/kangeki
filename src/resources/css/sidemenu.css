@@ -20,7 +20,7 @@
 .sidebar ul {
     display: flex;
     flex-direction: column;
-    padding-left: 12px;
+    padding-left: 24px;
     gap: 15px;
 }
 
@@ -30,12 +30,12 @@
 }
 
 .btn-logout {
-    padding-left: 12px;
+    padding-left: 24px;
     margin-top: 15px;
     cursor: pointer;
 }
 
 .btn-account-delete {
-    padding-left: 12px;
+    padding-left: 24px;
     margin-top: 90px;
 }
