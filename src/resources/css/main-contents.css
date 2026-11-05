@@ -12,3 +12,10 @@
     padding-bottom: 8px;
     margin-bottom: 30px;
 }
+
+@media (max-width: 1032px) {
+    .main-contents {
+        overflow-y: visible;
+        height: auto;
+    }
+}

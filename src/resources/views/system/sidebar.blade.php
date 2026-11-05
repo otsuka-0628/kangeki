@@ -1,4 +1,5 @@
-<nav class="sidebar" style="background-image: url('{{ asset('images/menu-system.jpg') }}')">
+<nav class="sidebar"
+    style="--bg-desktop: url('{{ asset('images/menu-system.jpg') }}'); --bg-mobile: url('{{ asset('images/menu-system-sh.jpg') }});">
     <img class="sidebar-logo" src="{{ asset('images/logo-white.png') }}">
     <ul>
         <li><a href="{{ route('system.dashboard') }}">トップページ</a></li>
