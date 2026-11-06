@@ -45,3 +45,9 @@
     width: 130px;
     padding: 5px 0;
 }
+
+@media (max-width: 1032px) {
+    .account-edit-form {
+        width: 100%;
+    }
+}

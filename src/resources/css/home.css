@@ -77,11 +77,15 @@
 
 @media (max-width: 1032px) {
     .performance-container {
-        min-height: 30vh;
+        min-height: 20vh;
         width: 100%;
         padding-left: 20px;
         margin-bottom: 50px;
-        padding-top: 40px;
+        padding-top: 45px;
         padding-bottom: 20px;
+    }
+
+    .btn-addition {
+        width: 100%;
     }
 }

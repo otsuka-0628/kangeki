@@ -142,3 +142,9 @@
     margin-bottom: 0 !important;
     white-space: nowrap !important;
 }
+
+@media (max-width: 1032px) {
+    .performance-form {
+        width: 80%;
+    }
+}

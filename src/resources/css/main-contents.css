@@ -15,7 +15,8 @@
 
 @media (max-width: 1032px) {
     .main-contents {
-        overflow-y: visible;
+        flex: 1;
+        overflow: auto;
         height: auto;
     }
 }
