@@ -4,6 +4,7 @@
 }
 
 .sidebar {
+    background-image: var(--bg-desktop);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -38,4 +39,46 @@
 .btn-account-delete {
     padding-left: 24px;
     margin-top: 90px;
+}
+
+@media (max-width: 1032px) {
+
+    .sidebar {
+        background-image: var(--bg-mobile);
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    .sidebar-logo {
+        padding: 0 12px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+    .sidebar-menu-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 24px;
+        gap: 15px;
+    }
+
+    .sidebar-menu-group ul {
+        display: contents;
+        padding-left: 0;
+    }
+
+    .btn-logout {
+        padding-left: 0;
+        margin-top: 0;
+        cursor: pointer;
+    }
+
+    .btn-account-delete {
+        padding-left: 0;
+        margin-top: 0;
+        padding-bottom: 20px;
+    }
 }

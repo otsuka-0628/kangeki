@@ -124,3 +124,29 @@ input[type="submit"] {
     color: #2B0C0E;
     padding-top: 10px;
 }
+
+@media (max-width: 1032px) {
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        padding-top: 0vh;
+    }
+
+    .form-root {
+        background-color: rgba(242, 242, 242, 60%);
+        width: 100%;
+        height: auto;
+        border-radius: 0px;
+    }
+
+    .login-logo {
+        padding-top: 80px;
+    }
+
+    .register-top-link {
+        padding-bottom: 24px;
+    }
+
+}

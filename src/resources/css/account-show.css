@@ -38,3 +38,13 @@
     padding: 1px 10px;
     color: rgb(100, 100, 100);
 }
+
+@media (max-width: 1032px) {
+    .show-account-container {
+        width: 100%;
+    }
+
+    .account-info {
+        padding: 0 20px;
+    }
+}

@@ -65,3 +65,15 @@ button.btn-message-submit {
     border-radius: 5px;
     margin-top: 20px;
 }
+
+@media (max-width: 1032px) {
+    .contact-form-root {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    button.btn-message-submit {
+        margin-top: 0px;
+    }
+
+}

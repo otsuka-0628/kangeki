@@ -28,3 +28,9 @@ input.troupe-btn-submit {
     padding: 5px 30px;
     border-radius: 5px;
 }
+
+@media (max-width: 1032px) {
+    .troupe-form {
+        width: 100%;
+    }
+}

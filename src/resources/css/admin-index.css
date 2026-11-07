@@ -215,3 +215,9 @@ tr:nth-child(even) {
     background-color: #f8f9fa;
     margin-right: 4px;
 }
+
+@media (max-width: 1032px) {
+    .admin-index-table th:nth-child(6) {
+        width: 250px;
+    }
+}
