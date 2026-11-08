@@ -58,3 +58,9 @@
     margin-bottom: 3px;
     margin-top: 10px;
 }
+
+@media (max-width: 1032px) {
+    .reservation-thanks-container {
+        margin-bottom: 20px;
+    }
+}

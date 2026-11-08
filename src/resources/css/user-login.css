@@ -135,7 +135,7 @@ input[type="submit"] {
     }
 
     .form-root {
-        background-color: rgba(242, 242, 242, 60%);
+        background-color: rgba(242, 242, 242, 80%);
         width: 100%;
         height: auto;
         border-radius: 0px;

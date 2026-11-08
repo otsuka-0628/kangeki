@@ -94,3 +94,16 @@
     font-family: inherit;
     background-color: white;
 }
+
+@media (max-width: 1032px) {
+    .reservation-bg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0;
+    }
+
+    .reservation-create-container {
+        height: auto;
+    }
+}
