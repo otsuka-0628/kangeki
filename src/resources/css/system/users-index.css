@@ -57,3 +57,9 @@
 .btn-account-stop {
     cursor: pointer;
 }
+
+@media (max-width: 1032px) {
+    .system-troupes-table th:nth-child(5) {
+        width: 250px;
+    }
+}

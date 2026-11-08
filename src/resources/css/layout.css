@@ -14,18 +14,6 @@ body {
 
 @media (max-width: 1032px) {
 
-    /* html,
-    body {
-        height: auto;
-        overflow: auto;
-    } */
-
-    /* .dashboard-layout {
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-    } */
-
     .dashboard-layout {
         display: flex;
         flex-direction: column;

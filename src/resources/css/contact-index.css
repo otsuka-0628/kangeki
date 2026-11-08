@@ -70,6 +70,7 @@ button.btn-message-submit {
     .contact-form-root {
         width: 100%;
         border-radius: 0;
+        background-color: rgba(242, 242, 242, 80%);
     }
 
     button.btn-message-submit {
